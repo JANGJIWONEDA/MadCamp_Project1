@@ -30,14 +30,6 @@ class MainActivity : AppCompatActivity() {
                     setFrag(2)
                 }
 
-                R.id.action_call -> {
-                    setFrag(3)
-                }
-
-                R.id.action_run -> {
-                    setFrag(4)
-                }
-
                 else -> {
                     false
                 }
@@ -60,14 +52,6 @@ class MainActivity : AppCompatActivity() {
 
             2 -> {
                 ft.replace(R.id.main_frame, Frag3()).commit()
-            }
-
-            3 -> {
-                ft.replace(R.id.main_frame, Frag4()).commit()
-            }
-
-            4 -> {
-                ft.replace(R.id.main_frame, Frag5()).commit()
             }
         }
         return true

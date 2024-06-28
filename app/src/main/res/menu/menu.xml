@@ -3,27 +3,17 @@
     <item
         android:id="@+id/action_airplane"
         android:enabled="true"
-        android:icon="@drawable/baseline_access_time_24"
-        android:title="비행기"/>
+        android:icon="@drawable/baseline_account_circle_24"
+        android:title="연락처"/>
     <item
         android:id="@+id/action_airport_shuttle"
         android:enabled="true"
-        android:icon="@drawable/baseline_account_circle_24"
-        android:title="버스"/>
+        android:icon="@drawable/baseline_add_photo_alternate_24"
+        android:title="사진첩"/>
     <item
         android:id="@+id/action_bluetooth"
         android:enabled="true"
-        android:icon="@drawable/baseline_add_circle_24"
-        android:title="블루투스"/>
-    <item
-        android:id="@+id/action_call"
-        android:enabled="true"
-        android:icon="@drawable/baseline_add_to_home_screen_24"
-        android:title="전화"/>
-    <item
-        android:id="@+id/action_run"
-        android:enabled="true"
-        android:icon="@drawable/baseline_adjust_24"
-        android:title="사람"/>
+        android:icon="@drawable/baseline_book_24"
+        android:title="일기장"/>
 
 </menu>
