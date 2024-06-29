@@ -27,6 +27,9 @@ class ContactAdder : AppCompatActivity() {
         var newContactPhone = findViewById<EditText>(R.id.add_phone).text.toString()
         var newContactName = findViewById<EditText>(R.id.add_name).text.toString()
         val newContactRelation = findViewById<EditText>(R.id.add_relation).text.toString()
+        val newTag1 = findViewById<EditText>(R.id.add_tag1).text.toString()
+        val newTag2 = findViewById<EditText>(R.id.add_tag2).text.toString()
+        val newTag3 = findViewById<EditText>(R.id.add_tag3).text.toString()
         if (newContactPhone == ""){
             newContactPhone = "00000000000"
         }
@@ -40,7 +43,7 @@ class ContactAdder : AppCompatActivity() {
             }
         }
 
-        val newContact = Contacts(newContactName, newContactPhone, newContactRelation)
+        val newContact = Contacts(newContactName, newContactPhone, newContactRelation, newTag1, newTag2, newTag3)
         contactList.add(newContact)
 
         val gson = Gson()

@@ -83,7 +83,8 @@ class Frag1 : Fragment() {
                 val name = view.findViewById<TextView>(R.id.contactName).text.toString()
                 val phone = view.findViewById<TextView>(R.id.phoneNumber).text.toString()
                 val relation = view.findViewById<TextView>(R.id.contactRelation).text.toString()
-                intent.putStringArrayListExtra("contactprofile", arrayListOf(name, phone, relation))
+                val contact = contactList.find{it.contactName == name}
+                intent.putStringArrayListExtra("contactprofile", arrayListOf(name, phone, relation, contact?.contactTag1, contact?.contactTag2, contact?.contactTag3))
                 activity?.supportFragmentManager
                     ?.beginTransaction()
                     ?.remove(contactsFragment)
@@ -114,7 +115,7 @@ class Frag1 : Fragment() {
     private fun addToContactListFromLocal(newContactName: String, newContactPhone: String){
         val ch = ContactHandler(context)
         val contactList = ch.getContactsList()
-        val newContact = Contacts(newContactName, newContactPhone, "")
+        val newContact = Contacts(newContactName, newContactPhone, "", "", "", "")
         contactList.add(newContact)
         val gson = Gson()
         val newContactsListJson: String = gson.toJson(contactList)

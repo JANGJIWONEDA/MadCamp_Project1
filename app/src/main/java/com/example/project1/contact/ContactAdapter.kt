@@ -32,6 +32,7 @@ class ContactAdapter (private val itemList: ArrayList<Contacts>): RecyclerView.A
             contactName?.text = contacts.contactName
             phoneNumber?.text = contacts.phoneNumber
             contactRelation?.text = contacts.contactRelation
+
             cardView?.setOnClickListener{
                 listener?.onCardViewClick(itemView, contacts, adapterPosition)
             }

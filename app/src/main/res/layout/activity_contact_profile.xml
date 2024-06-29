@@ -174,26 +174,87 @@
             >
         </TextView>
     </LinearLayout>
-    <android.widget.Button
-        android:id="@+id/end_point"
-        android:layout_height="155dp"
-        android:layout_width="130dp"
+    <TextView
+        android:id="@+id/contact_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:orientation="horizontal"
+        android:text="함께한 여행지"
+        android:textColor="#555555"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_contacts_text5"
+        app:layout_constraintTop_toBottomOf="@+id/add_contacts_text6"
+        app:layout_constraintVertical_bias="0.05">
+    </TextView>
+    <TextView
+        android:id="@+id/add_contact_tag1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:orientation="horizontal"
+        android:text="여행지1"
+        android:textColor="#555555"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact_tag"
+        app:layout_constraintVertical_bias="0">
+    </TextView>
+    <TextView
+        android:id="@+id/add_contact_tag2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:orientation="horizontal"
+        android:text="여행지2"
+        android:textColor="#555555"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_contact_tag1"
+        app:layout_constraintVertical_bias="0.0">
+    </TextView>
+    <TextView
+        android:id="@+id/add_contact_tag3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:orientation="horizontal"
+        android:text="여행지3"
+        android:textColor="#555555"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_contact_tag2"
+        app:layout_constraintVertical_bias="0.0">
+    </TextView>
+    <android.widget.Button
+        android:id="@+id/end_point"
+        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:text = "delete"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_contact_tag3"
         app:layout_constraintVertical_bias="0.315"
+        app:layout_constraintHorizontal_bias="0.4"
+
         >
     </android.widget.Button>
     <android.widget.Button
         android:id="@+id/edit_point"
-        android:layout_height="155dp"
-        android:layout_width="130dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_point"
-        app:layout_constraintVertical_bias="0.315"
+        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:text = "EDIT"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/end_point"
+        app:layout_constraintStart_toEndOf ="@id/end_point"
+        app:layout_constraintVertical_bias="0"
         >
 
     </android.widget.Button>

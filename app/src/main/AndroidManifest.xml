@@ -25,8 +25,9 @@
             android:exported="false" />
         <activity
             android:name=".contact.ContactAdder"
-            android:exported="false"
-            android:label="@string/title_activity_contact_adder" />
+            android:exported="false"/>
+<!--            android:label="@string/title_activity_contact_adder" -->
+
         <activity
             android:name=".contact.ContactAdapter"
             android:exported="false"

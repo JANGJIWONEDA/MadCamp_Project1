@@ -19,7 +19,10 @@ class ContactHandler(val context: Context?) {
                     val name = contactsJsonArray.getJSONObject(i).getString("contactName")
                     val phoneNumber = contactsJsonArray.getJSONObject(i).getString("phoneNumber")
                     val relationship = contactsJsonArray.getJSONObject(i).getString("contactRelation")
-                    contactsList.add(Contacts(name, phoneNumber, relationship))
+                    val tag1 = contactsJsonArray.getJSONObject(i).getString("contactTag1")
+                    val tag2 = contactsJsonArray.getJSONObject(i).getString("contactTag2")
+                    val tag3 = contactsJsonArray.getJSONObject(i).getString("contactTag3")
+                    contactsList.add(Contacts(name, phoneNumber, relationship, tag1, tag2, tag3))
                 }
             }
         }
