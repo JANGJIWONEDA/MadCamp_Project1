@@ -22,7 +22,7 @@ import com.example.project1.MainActivity
 import com.example.project1.R
 import com.example.project1.diary.DiaryAdapter
 import com.example.project1.diary.DiaryAdder
-import com.example.project1.diary.DiaryHandler
+import com.example.project1.contact.ContactHandler
 import com.example.project1.diary.DiaryProfile
 import com.example.project1.diary.Diaries
 import com.example.project1.databinding.ActivityMainBinding
@@ -37,6 +37,7 @@ class Frag3 : Fragment() {
 
     lateinit var requestLauncher: ActivityResultLauncher<Intent>
     lateinit var binding: ActivityMainBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_frag3, container, false)
@@ -54,7 +55,7 @@ class Frag3 : Fragment() {
         val dh = DiaryHandler(context)
         diaryList = dh.getDiariesList()
 
-
+        val ch = ContactHandler(context)
         val diaryAdapter = DiaryAdapter(diaryList)
         diaryAdapter.setOnItemClickListener(object:
             DiaryAdapter.OnItemClickListener {

@@ -8,7 +8,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project1.R
 
-class ContactAdapter (private val itemList: ArrayList<Contacts>): RecyclerView.Adapter<ContactAdapter.Holder>() {
+class ContactAdapter(private val itemList: List<Contacts>): RecyclerView.Adapter<ContactAdapter.Holder>() {
 
     interface OnItemClickListener{
         fun onCardViewClick(view: View, contacts: Contacts, pos: Int)
