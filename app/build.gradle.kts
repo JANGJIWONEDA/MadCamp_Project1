@@ -76,5 +76,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation ("com.google.code.gson:gson:2.8.8")
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
 
 }

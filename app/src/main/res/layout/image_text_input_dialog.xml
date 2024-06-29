@@ -8,17 +8,29 @@
     <ImageView
         android:id="@+id/dialogImageView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
     <EditText
-        android:id="@+id/editTextDescription"
+        android:id="@+id/editTextTag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_gravity="bottom"
-        android:hint="Enter Description"
+        android:hint="가고 싶은 여행지를 적어주세요."
         android:inputType="text"
         android:maxLines="1"
-        android:paddingTop="115dp" />
+        android:fontFamily="@font/font1"
+        />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:hint="어디를 둘러보고 싶나요?"
+        android:inputType="text"
+        android:maxLines="1"
+        android:fontFamily="@font/font1"
+        />
 </LinearLayout>

@@ -89,7 +89,7 @@ class Frag2 : Fragment() {
         }
     }
 
-    data class ImageData(val imageUri: Uri, val description: String)
+    data class ImageData(val imageUri: Uri, val description: String, val tag: String)
 
     inner class MyGridAdapter(private val context: Context) : BaseAdapter() {
         val imageUris = ArrayList<Uri>()
@@ -118,9 +118,10 @@ class Frag2 : Fragment() {
             imageView.setImageURI(imageUri)
 
             val description = imageDatas.find { it.imageUri == imageUri }?.description ?: ""
+            val tag = imageDatas.find { it.imageUri == imageUri }?.tag ?: ""
 
             imageView.setOnClickListener {
-                showImageDialog(imageUri, description)
+                showImageDialog(imageUri, description, tag)
             }
 
             return imageView
@@ -130,13 +131,15 @@ class Frag2 : Fragment() {
             val dialogView = LayoutInflater.from(context).inflate(R.layout.image_text_input_dialog, null)
             val dialogImageView = dialogView.findViewById<ImageView>(R.id.dialogImageView)
             val editTextDescription = dialogView.findViewById<EditText>(R.id.editTextDescription)
+            val editTextTag = dialogView.findViewById<EditText>(R.id.editTextTag)
             dialogImageView.setImageURI(uri)
 
             val alertDialog = AlertDialog.Builder(context)
                 .setView(dialogView)
                 .setPositiveButton("Select") { dialog, _ ->
                     val description = editTextDescription.text.toString()
-                    imageDatas.add(ImageData(uri, description))
+                    val tag = editTextTag.text.toString()
+                    imageDatas.add(ImageData(uri, description, tag))
                     imageUris.add(uri)
                     notifyDataSetChanged()
                     dialog.dismiss()
@@ -150,13 +153,15 @@ class Frag2 : Fragment() {
                 .show()
         }
 
-        private fun showImageDialog(imageUri: Uri, description: String) {
+        private fun showImageDialog(imageUri: Uri, description: String, tag: String) {
             val dialogView = LayoutInflater.from(context).inflate(R.layout.image_dialog, null)
             val dialogImageView = dialogView.findViewById<ImageView>(R.id.dialogImageView)
             val textViewDescription = dialogView.findViewById<TextView>(R.id.textViewDescription)
+            val textViewTag = dialogView.findViewById<TextView>(R.id.textViewTag)
 
             dialogImageView.setImageURI(imageUri) // 이미지 설정
-            textViewDescription.text = description // 텍스트 설정
+            textViewDescription.text = "가고 싶은 곳: $description"  // 텍스트 설정
+            textViewTag.text = "여행지: $tag" // 텍스트 설정
 
             AlertDialog.Builder(context)
                 .setView(dialogView)
@@ -184,6 +189,7 @@ class Frag2 : Fragment() {
         val jsonObject = JSONObject()
         jsonObject.put("imageUri", imageUri.toString())
         jsonObject.put("description", description)
+        jsonObject.put("tag", description)
         return jsonObject.toString()
     }
 
@@ -221,7 +227,8 @@ class Frag2 : Fragment() {
                 val jsonObject = jsonArray.getJSONObject(i)
                 val imageUri = Uri.parse(jsonObject.getString("imageUri"))
                 val description = jsonObject.getString("description")
-                myGridAdapter.imageDatas.add(ImageData(imageUri, description))
+                val tag = jsonObject.getString("tag")
+                myGridAdapter.imageDatas.add(ImageData(imageUri, description, tag))
                 myGridAdapter.imageUris.add(imageUri)
             }
 
