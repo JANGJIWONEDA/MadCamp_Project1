@@ -1,15 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!--frag xml-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B398DA"
-    android:orientation="vertical">
+    android:gravity="center|bottom"
+    android:layout_marginBottom="140dp">
 
-    <TextView
+    <!-- 버튼을 먼저 정의 -->
+    <Button
+        android:id="@+id/select_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2번 화면 입니다."
-        android:textSize="40dp"/>
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/select_image" />
 
-</LinearLayout>
+    <!-- 그리드뷰를 버튼 아래에 배치 -->
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/select_image_button"
+        android:layout_marginTop="-453dp"
+        android:gravity="top"
+        android:numColumns="5" />
+
+
+    <!-- 추가적인 UI 요소들을 정의할 수 있습니다 -->
+
+</RelativeLayout>

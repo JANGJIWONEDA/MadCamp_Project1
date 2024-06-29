@@ -22,15 +22,6 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        val status = ContextCompat.checkSelfPermission(this, "android.permission.READ_COTACTS")
-        if (status == PackageManager.PERMISSION_GRANTED) {
-            Log.d("test", "permission granted")
-        } else{
-            ActivityCompat.requestPermissions(this, arrayOf<String>("android.permission.READ_CONTACTS"), 100)
-            Log.d("test", "permission denied")
-        }
-
         binding.bottomNavi.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_airplane -> {
@@ -84,4 +75,5 @@ class MainActivity : AppCompatActivity() {
             Log.d("test", "permission denied")
         }
     }
+
 }
