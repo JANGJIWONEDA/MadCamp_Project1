@@ -24,6 +24,8 @@
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="10dp"
         android:elevation="10dp"
         android:onClick="onClickFromLocalContactButton"
         android:text="연락처"

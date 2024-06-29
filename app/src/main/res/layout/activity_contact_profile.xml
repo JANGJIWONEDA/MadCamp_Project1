@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".contact.ContactProfile"
+    >
+
+    <LinearLayout
+        android:id="@+id/add_contacts_text2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detailName2"
+            android:text="이름"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="님의 프로필"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/add_contacts_line1"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_contacts_text2"
+        app:layout_constraintVertical_bias="0.0"
+        >
+    </ImageView>
+
+    <LinearLayout
+        android:id="@+id/add_contacts_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_contacts_line1"
+        app:layout_constraintVertical_bias="0.0"
+        >
+        <TextView
+            android:id="@+id/detailName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="18dp"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="님과의 관계"
+            android:textSize="18dp"
+            >
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/add_contacts_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="-10dp"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_contacts_text3"
+        app:layout_constraintVertical_bias="0.0"
+        >
+        <TextView
+            android:id="@+id/detailRelation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가족"
+            android:textSize="18dp"
+            >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_contacts_text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_contacts_text4"
+        app:layout_constraintVertical_bias="0.0"
+        >
+        <TextView
+            android:id="@+id/detailName4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="18dp"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="님의 연락처,"
+            android:textSize="18dp"
+            >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_contacts_text6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="-10dp"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_contacts_text5"
+        app:layout_constraintVertical_bias="0.0"
+        >
+        <TextView
+            android:id="@+id/detailPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="010-2633-5321"
+            android:textSize="18dp"
+            >
+        </TextView>
+    </LinearLayout>
+    <android.widget.Button
+        android:id="@+id/end_point"
+        android:layout_height="155dp"
+        android:layout_width="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_contacts_text5"
+        app:layout_constraintVertical_bias="0.315"
+        >
+    </android.widget.Button>
+    <android.widget.Button
+        android:id="@+id/edit_point"
+        android:layout_height="155dp"
+        android:layout_width="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/end_point"
+        app:layout_constraintVertical_bias="0.315"
+        >
+
+    </android.widget.Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
