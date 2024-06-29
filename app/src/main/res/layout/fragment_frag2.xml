@@ -1,3 +1,4 @@
+<!--frag xml-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,12 +19,11 @@
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="400dp"
         android:layout_below="@id/select_image_button"
-        android:layout_marginTop="-458dp"
+        android:layout_marginTop="-453dp"
         android:gravity="top"
-        android:numColumns="5"
-        />
+        android:numColumns="5" />
 
 
     <!-- 추가적인 UI 요소들을 정의할 수 있습니다 -->
