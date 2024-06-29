@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#B398DA"
     android:orientation="vertical">
-
     <android.widget.Button
         android:id="@+id/add_contacts"
         android:layout_width="80dp"
@@ -13,10 +12,24 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="121dp"
+        android:layout_marginBottom="50dp"
         android:elevation="10dp"
         android:text="+"
-        android:textSize="60sp"></android.widget.Button>
+        android:textSize="60sp">
+    </android.widget.Button>
+
+
+    <android.widget.Button
+        android:id="@+id/add_from_local_point"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:elevation="10dp"
+        android:onClick="onClickFromLocalContactButton"
+        android:text="연락처"
+        android:textSize="15sp"
+        app:layout_constraintTop_toTopOf="parent">
+    </android.widget.Button>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

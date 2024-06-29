@@ -1,7 +1,12 @@
 package com.example.project1
 
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.PackageManagerCompat
 import com.example.project1.contact.Frag1
 import com.example.project1.databinding.ActivityMainBinding
 
@@ -16,6 +21,15 @@ class MainActivity : AppCompatActivity() {
 
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        val status = ContextCompat.checkSelfPermission(this, "android.permission.READ_COTACTS")
+        if (status == PackageManager.PERMISSION_GRANTED) {
+            Log.d("test", "permission granted")
+        } else{
+            ActivityCompat.requestPermissions(this, arrayOf<String>("android.permission.READ_CONTACTS"), 100)
+            Log.d("test", "permission denied")
+        }
 
         binding.bottomNavi.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -56,5 +70,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Log.d("test", "permission granted")
+        } else{
+            Log.d("test", "permission denied")
+        }
     }
 }
