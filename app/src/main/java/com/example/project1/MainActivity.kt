@@ -6,9 +6,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.PackageManagerCompat
 import com.example.project1.contact.Frag1
 import com.example.project1.databinding.ActivityMainBinding
+import com.example.project1.diary.Frag3
 
 
 class MainActivity : AppCompatActivity() {
