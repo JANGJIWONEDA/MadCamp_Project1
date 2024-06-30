@@ -1,8 +1,16 @@
 package com.example.project1.contact
 
+import android.app.PendingIntent.getActivity
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LayoutAnimationController
+import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +20,7 @@ class ContactAdapter(private val itemList: List<Contacts>): RecyclerView.Adapter
 
     interface OnItemClickListener{
         fun onCardViewClick(view: View, contacts: Contacts, pos: Int)
+        fun onCallClick(view: View, contacts: Contacts, pos: Int)
     }
     private var listener: OnItemClickListener? = null
     fun setOnItemClickListener(listener:OnItemClickListener){
@@ -27,14 +36,17 @@ class ContactAdapter(private val itemList: List<Contacts>): RecyclerView.Adapter
         private val phoneNumber = itemView?.findViewById<TextView>(R.id.phoneNumber)
         private val contactRelation = itemView?.findViewById<TextView>(R.id.contactRelation)
         private val cardView = itemView?.findViewById<CardView>(R.id.card_view)
+        private val callbtn = itemView?.findViewById<Button>(R.id.call_point)
 
         fun bind(contacts: Contacts){
             contactName?.text = contacts.contactName
             phoneNumber?.text = contacts.phoneNumber
             contactRelation?.text = contacts.contactRelation
-
             cardView?.setOnClickListener{
                 listener?.onCardViewClick(itemView, contacts, adapterPosition)
+            }
+            callbtn?.setOnClickListener{
+                listener?.onCallClick(itemView, contacts, adapterPosition)
             }
         }
     }

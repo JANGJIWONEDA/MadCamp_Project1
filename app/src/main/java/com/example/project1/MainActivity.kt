@@ -3,6 +3,7 @@ package com.example.project1
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,14 +23,6 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        val status = ContextCompat.checkSelfPermission(this, "android.permission.READ_COTACTS")
-        if (status == PackageManager.PERMISSION_GRANTED) {
-            Log.d("test", "permission granted")
-        } else{
-            ActivityCompat.requestPermissions(this, arrayOf<String>("android.permission.READ_CONTACTS"), 100)
-            Log.d("test", "permission denied")
-        }
 
         binding.bottomNavi.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -82,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("test", "permission granted")
         } else{
             Log.d("test", "permission denied")
+            Toast.makeText(applicationContext, "권한이 거부되어 이 기능을 사용할 수 없어요. 설정에서 허락해 주세요", Toast.LENGTH_SHORT).show()
         }
     }
 }

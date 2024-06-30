@@ -139,7 +139,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_relation"
         app:layout_constraintVertical_bias="0.05" />
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_tag1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
         app:layout_constraintTop_toBottomOf="@+id/contact_tagTitle"
         app:layout_constraintVertical_bias="0.018" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_tag2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
         app:layout_constraintVertical_bias="0.018" />
 
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_tag3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

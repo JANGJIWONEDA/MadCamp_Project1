@@ -2,6 +2,8 @@ package com.example.project1.contact
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
@@ -12,6 +14,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -88,12 +92,26 @@ class Frag1 : Fragment() {
                     ?.commit()
                 startActivity(intent)
                 }
+            override fun onCallClick(view:View, contacts: Contacts, pos : Int){
+                val status = ContextCompat.checkSelfPermission(requireContext(), "android.permission.CALL_PHONE")
+                if (status == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("test", "permission granted")
+
+                    var intent = Intent(Intent.ACTION_CALL)
+                    intent.data = Uri.parse("tel:"+view.findViewById<TextView>(R.id.phoneNumber).text.toString())
+                    startActivity(intent)
+                } else{
+                    ActivityCompat.requestPermissions(requireActivity(), arrayOf<String>("android.permission.CALL_PHONE"), 100)
+                    Log.d("test", "permission denied")
+                }
+            }
             }
         )
 
         addFromLocalButton = rootView?.findViewById(R.id.add_from_local_point)
 
         addFromLocalButton?.setOnClickListener{
+
             onClickFromLocalContactButton(it)
         }
 
@@ -106,10 +124,26 @@ class Frag1 : Fragment() {
         return rootView
     }
     private fun onClickFromLocalContactButton(view: View){
+        var status = ContextCompat.checkSelfPermission(requireContext(), "android.permission.READ_CONTACTS")
+        if (status == PackageManager.PERMISSION_GRANTED) {
+            Log.d("test", "permission granted")
+            getFromLocalContactButton(view)
+        } else{
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf<String>("android.permission.READ_CONTACTS"), 100)
+            Log.d("test", "permission denied in contact")
+            status = ContextCompat.checkSelfPermission(requireContext(), "android.permission.READ_CONTACTS")
+            if (status == PackageManager.PERMISSION_GRANTED){
+                getFromLocalContactButton(view)
+            }
+        }
+    }
+    private fun getFromLocalContactButton(view: View){
             val intent = Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
             requestLauncher.launch(intent)
     }
     private fun addToContactListFromLocal(newContactName: String, newContactPhone: String){
+
+
         val ch = ContactHandler(context)
         val contactList = ch.getContactsList()
         val newContact = Contacts(newContactName, newContactPhone, "", "", "", "")

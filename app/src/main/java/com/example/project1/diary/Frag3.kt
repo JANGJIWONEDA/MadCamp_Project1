@@ -69,6 +69,7 @@ class Frag3 : Fragment() {
                     ?.remove(diariesFragment)
                     ?.commit()
                 startActivity(intent)
+
             }
         }
         )

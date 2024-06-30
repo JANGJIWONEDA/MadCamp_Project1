@@ -24,7 +24,6 @@ class DiaryEditer : AppCompatActivity() {
     private var oldName: String? = null
     private var oldTag: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("test", "Editer enter")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diary_editer)
 
@@ -43,7 +42,6 @@ class DiaryEditer : AppCompatActivity() {
         editButton.setOnClickListener{
             onClickEditDiaryButton(it)
         }
-
     }
 
     fun onClickEditDiaryButton(view: View) {
@@ -71,14 +69,17 @@ class DiaryEditer : AppCompatActivity() {
         val newDiariesListJson: String = gson.toJson(filteredDiaryList)
         dh.writeDiaryList(newDiariesListJson)
 
-        val intent = Intent(this@DiaryEditer, Frag3::class.java)
+        val intent = Intent(this@DiaryEditer, DiaryProfile::class.java)
+
+        intent.putStringArrayListExtra("diaryprofile", arrayListOf(newDiaryName, newDiaryTag))
         startActivity(intent)
+        finish()
     }
 
     private fun addOnBackPressedCallback() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                val intent = Intent(this@DiaryEditer, DiaryProfile::class.java)
+                val intent = Intent(this@DiaryEditer, MainActivity::class.java)
                 startActivity(intent)
             }
         }
