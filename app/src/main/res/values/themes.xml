@@ -6,5 +6,15 @@
     </style>
 
     <style name="Theme.Project1" parent="Base.Theme.Project1" />
-
+    <style name="Base.Theme.Memo" parent = "Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/pink</item>
+        <item name="colorPrimaryVariant">@color/pink</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/pink</item>
+        <item name="colorSecondaryVariant">@color/pink</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
 </resources>

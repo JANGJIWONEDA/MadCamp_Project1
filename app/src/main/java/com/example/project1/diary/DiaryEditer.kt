@@ -20,6 +20,7 @@ import com.google.gson.Gson
 class DiaryEditer : AppCompatActivity() {
     private lateinit var profileName: EditText
     private lateinit var profileTag: EditText
+    private lateinit var profileMemo: EditText
     private lateinit var editButton: Button
     private var oldName: String? = null
     private var oldTag: String? = null
@@ -59,11 +60,12 @@ class DiaryEditer : AppCompatActivity() {
             newDiaryTag = oldTag as String
         }
 
-        val newDiary = Diaries(newDiaryName, newDiaryTag)
+        val newDiary = Diaries(newDiaryName, newDiaryTag, "")
         var filteredDiaryList = diaryList.filter{ di -> di.diaryName != oldName}
 
         filteredDiaryList = filteredDiaryList.toMutableList()
         filteredDiaryList.add(newDiary)
+
 
         val gson = Gson()
         val newDiariesListJson: String = gson.toJson(filteredDiaryList)

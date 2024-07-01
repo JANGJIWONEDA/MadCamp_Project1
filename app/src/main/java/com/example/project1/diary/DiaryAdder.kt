@@ -33,8 +33,9 @@ class DiaryAdder : AppCompatActivity() {
             }
         }
 
-        val newDiary = Diaries(newDiaryTitle, newDiaryTag)
+        val newDiary = Diaries(newDiaryTitle, newDiaryTag, "")
         diaryList.add(newDiary)
+
 
         val gson = Gson()
         val newDiariesListJson: String = gson.toJson(diaryList)

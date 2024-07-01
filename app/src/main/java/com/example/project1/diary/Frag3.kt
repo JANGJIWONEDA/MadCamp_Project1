@@ -1,32 +1,19 @@
 package com.example.project1.diary
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project1.MainActivity
 import com.example.project1.R
-import com.example.project1.diary.DiaryAdapter
-import com.example.project1.diary.DiaryAdder
 import com.example.project1.contact.ContactHandler
-import com.example.project1.diary.DiaryProfile
-import com.example.project1.diary.Diaries
 import com.example.project1.databinding.ActivityMainBinding
-import com.google.gson.Gson
 
 
 class Frag3 : Fragment() {
@@ -59,11 +46,13 @@ class Frag3 : Fragment() {
         val diaryAdapter = DiaryAdapter(diaryList)
         diaryAdapter.setOnItemClickListener(object:
             DiaryAdapter.OnItemClickListener {
-            override fun onCardViewClick(view: View, diaires: Diaries, pos: Int) {
+            override fun onCardViewClick(view: View, diaries: Diaries, pos: Int) {
                 val intent = Intent(activity, DiaryProfile::class.java)
                 val name = view.findViewById<TextView>(R.id.diaryName).text.toString()
-                val tag = diaryList.find { it.diaryName == name }?.diaryTag
-                intent.putStringArrayListExtra("diaryprofile", arrayListOf(name, tag))
+                val tar = diaryList.find { it.diaryName == name }!!
+                val tag = tar.diaryTag
+                val memo = tar.diaryMemo
+                intent.putStringArrayListExtra("diaryprofile", arrayListOf(name, tag, memo))
                 activity?.supportFragmentManager
                     ?.beginTransaction()
                     ?.remove(diariesFragment)

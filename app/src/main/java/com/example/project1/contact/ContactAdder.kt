@@ -7,15 +7,12 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.project1.MainActivity
 import com.example.project1.R
 import com.google.gson.Gson
 import com.example.project1.diary.DiaryHandler
+
 
 class ContactAdder : AppCompatActivity() {
     private lateinit var searchList: MutableSet<String>

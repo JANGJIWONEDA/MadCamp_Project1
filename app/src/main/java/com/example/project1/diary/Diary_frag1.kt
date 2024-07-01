@@ -47,7 +47,6 @@ class Diary_frag1 : Fragment() {
         val tag = arguments?.getString("tag") ?: ""
         profileName = rootView.findViewById(R.id.travelDiaryName)
         profileTag = rootView.findViewById(R.id.travelDiaryTag)
-
         profileName.text = name
         profileTag.text = tag
 
@@ -55,7 +54,7 @@ class Diary_frag1 : Fragment() {
 
         val ch = ContactHandler(context)
         val contactList = ch.getContactsList()
-        val filteredContactList = contactList.filter{it -> it.contactTag1 == tag || it.contactTag2 == tag || it.contactTag3 == tag}
+        val filteredContactList = contactList.filter{it -> (it.contactTag1 == tag || it.contactTag2 == tag || it.contactTag3 == tag)}
 
         val contactAdapter = ContactAdapter(filteredContactList)
 
@@ -100,11 +99,10 @@ class Diary_frag1 : Fragment() {
         val dh = DiaryHandler(context)
         val diaryList = dh.getDiariesList()
 
-        Log.d("test", "before getting found")
         val diaryName = profileName.text.toString()
-        Log.d("test", "after getting $diaryName")
+
+
         val filteredDiaryList = diaryList.filter{ di -> di.diaryName != diaryName}
-        Log.d("test", "$diaryName found")
         val gson = Gson()
         val newDiaryListJson: String = gson.toJson(filteredDiaryList)
 

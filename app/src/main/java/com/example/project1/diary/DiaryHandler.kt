@@ -1,6 +1,7 @@
 package com.example.project1.diary
 
 import android.content.Context
+import android.util.Log
 import org.json.JSONArray
 import org.json.JSONTokener
 import java.io.File
@@ -10,6 +11,7 @@ class DiaryHandler(val context: Context?) {
         val diaryJsonFile = File(context!!.filesDir, "diaries.json")
         val diaryList = ArrayList<Diaries>()
 
+
         if(diaryJsonFile.exists()) {
             val diaryJsonString = diaryJsonFile.readText()
 
@@ -18,7 +20,7 @@ class DiaryHandler(val context: Context?) {
                 for(i in 0 until diaryJsonArray.length()){
                     val name = diaryJsonArray.getJSONObject(i).getString("diaryName")
                     val tag = diaryJsonArray.getJSONObject(i).getString("diaryTag")
-                    diaryList.add(Diaries(name, tag))
+                    diaryList.add(Diaries(name, tag, "memo"))
                 }
             }
         }
