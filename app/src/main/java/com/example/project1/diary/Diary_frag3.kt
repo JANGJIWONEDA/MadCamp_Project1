@@ -19,7 +19,6 @@ import com.example.project1.Memo.viewmodel.NoteViewModelFactory
 import com.example.project1.R
 
 class Diary_frag3 : Fragment(R.layout.fragment_diary_frag3) {
-    private lateinit var memoJang: String
     lateinit var noteViewModel: NoteViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
 //        val intent = Intent(context, MemoTest::class.java)
@@ -56,8 +55,5 @@ class Diary_frag3 : Fragment(R.layout.fragment_diary_frag3) {
             fragment1.arguments = bundle
             return fragment1
         }
-    }
-    public final fun viewModelProvider(): NoteViewModel{
-        return noteViewModel
     }
 }

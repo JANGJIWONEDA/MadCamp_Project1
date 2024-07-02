@@ -16,6 +16,10 @@ class NoteViewModel(app: Application, private val noteRepository: NoteRepository
         viewModelScope.launch{
             noteRepository.deleteNote(note)
         }
+    fun deleteNoteById(id: String) =
+        viewModelScope.launch{
+            noteRepository.deleteNoteById(id)
+        }
     fun updateNote(note: Note) =
         viewModelScope.launch{
             noteRepository.updateNote(note)

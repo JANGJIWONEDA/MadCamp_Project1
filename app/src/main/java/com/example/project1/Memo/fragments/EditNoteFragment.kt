@@ -36,6 +36,8 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
     private lateinit var notesViewModel: NoteViewModel
     private lateinit var currentNote: Note
 
+    private lateinit var tag: String
+
     private val args: EditNoteFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -51,6 +53,9 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
+
+
+        tag = (activity as DiaryProfile).diary_id
         notesViewModel = (activity as DiaryProfile).noteViewModel
         currentNote = args.note!!
 
@@ -62,7 +67,7 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
             val noteDesc = binding.editNoteDesc.text.toString().trim()
 
             if (noteTitle.isNotEmpty()){
-                    val note = Note(currentNote.id, noteTitle, noteDesc)
+                    val note = Note(currentNote.id, noteTitle, noteDesc, tag)
                     notesViewModel.updateNote(note)
                     view.findNavController().popBackStack(R.id.homeFragment, false)
                 } else{
@@ -103,5 +108,9 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
         override fun onDestroy(){
             super.onDestroy()
             editNoteBinding = null
+    }
+
+    public final fun deleteNoteAll(notesViewModel: NoteViewModel, tag:String){
+        notesViewModel.deleteNoteById(tag)
     }
 }

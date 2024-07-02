@@ -57,7 +57,6 @@
         android:layout_marginTop="-20dp"
         android:layout_marginRight="20dp"
         android:hint="이 추억의 이름을 정해주세요!"
-        android:inputType="phone"
         android:maxLength="13"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

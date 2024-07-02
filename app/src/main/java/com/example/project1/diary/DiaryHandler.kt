@@ -20,7 +20,8 @@ class DiaryHandler(val context: Context?) {
                 for(i in 0 until diaryJsonArray.length()){
                     val name = diaryJsonArray.getJSONObject(i).getString("diaryName")
                     val tag = diaryJsonArray.getJSONObject(i).getString("diaryTag")
-                    diaryList.add(Diaries(name, tag, "memo"))
+                    val timestamp = System.currentTimeMillis()
+                    diaryList.add(Diaries(diaryName = name, diaryTag = tag, timestamp = timestamp))
                 }
             }
         }
