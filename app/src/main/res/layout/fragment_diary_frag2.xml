@@ -17,7 +17,7 @@
         android:gravity="center"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:text="당신이 가고 싶은 여행지의 사진" />
+        android:text="여행지의 사진" />
 
     <GridView
         android:id="@+id/gridView"
