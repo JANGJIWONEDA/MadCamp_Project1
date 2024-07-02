@@ -13,17 +13,24 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.example.project1.MainActivity
+import com.example.project1.Memo.model.Note
 import com.example.project1.R
+import com.example.project1.diary.database.DiaryDatabase
+import com.example.project1.diary.repository.DiaryRepository
 import com.google.gson.Gson
+import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
 class DiaryEditer : AppCompatActivity() {
     private lateinit var profileName: EditText
     private lateinit var profileTag: EditText
-    private lateinit var profileMemo: EditText
     private lateinit var editButton: Button
     private var oldName: String? = null
     private var oldTag: String? = null
+    private final var oldId : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diary_editer)
@@ -35,6 +42,7 @@ class DiaryEditer : AppCompatActivity() {
         Log.d("test", "intent got")
         oldName = data?.get(0)
         oldTag = data?.get(1)
+        oldId = data?.get(2)!!.toInt()
         profileName.hint = oldName
         profileTag.hint = oldTag
 
@@ -47,7 +55,7 @@ class DiaryEditer : AppCompatActivity() {
 
     fun onClickEditDiaryButton(view: View) {
         val dh = DiaryHandler(applicationContext)
-        val diaryList = dh.getDiariesList()
+//        val diaryList = dh.getDiariesList()
 
         var newDiaryName = profileName.text.toString()
         var newDiaryTag = profileTag.text.toString()
@@ -60,22 +68,23 @@ class DiaryEditer : AppCompatActivity() {
             newDiaryTag = oldTag as String
         }
 
-        val newDiary = Diaries(newDiaryName, newDiaryTag, "")
-        var filteredDiaryList = diaryList.filter{ di -> di.diaryName != oldName}
 
-        filteredDiaryList = filteredDiaryList.toMutableList()
-        filteredDiaryList.add(newDiary)
+        val timestamp = System.currentTimeMillis()
 
+        val diaryRepository = DiaryRepository(DiaryDatabase(this))
+        Log.d("test", "${newDiaryTag}, ${oldId}")
+        val newDiary = Diaries(id = oldId, diaryName = newDiaryName, diaryTag = newDiaryTag, timestamp = timestamp)
+        lifecycleScope.launch{
+            diaryRepository.updateDiary(newDiary)
+            Toast.makeText(applicationContext, "수정되었어요", Toast.LENGTH_SHORT).show()
+        }
 
-        val gson = Gson()
-        val newDiariesListJson: String = gson.toJson(filteredDiaryList)
-        dh.writeDiaryList(newDiariesListJson)
 
         val intent = Intent(this@DiaryEditer, MainActivity::class.java)
         intent.putExtra("fragment", "frag3")
         startActivity(intent)
 
-        intent.putStringArrayListExtra("diaryprofile", arrayListOf(newDiaryName, newDiaryTag))
+        intent.putStringArrayListExtra("diaryprofile", arrayListOf(newDiaryName, newDiaryTag, oldId.toString()))
         startActivity(intent)
         finish()
     }

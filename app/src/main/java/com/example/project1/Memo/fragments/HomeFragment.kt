@@ -1,6 +1,7 @@
 package com.example.project1.Memo.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -12,6 +13,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.project1.Memo.MemoTest
@@ -21,6 +25,8 @@ import com.example.project1.Memo.viewmodel.NoteViewModel
 import com.example.project1.R
 import com.example.project1.databinding.FragmentHomeBinding
 import com.example.project1.diary.DiaryProfile
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 
 /**
  * A simple [Fragment] subclass.
@@ -31,6 +37,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     // TODO: Rename and change types of parameters
     private var homeBinding: FragmentHomeBinding? = null
     private val binding get() = homeBinding!!
+
+    private lateinit var tag : String
 
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var notesViewModel : NoteViewModel
@@ -48,6 +56,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        tag = (activity as DiaryProfile).diary_id
 
         notesViewModel = (activity as DiaryProfile).noteViewModel
         setupHomeRecyclerView()
@@ -79,13 +89,29 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         }
 
         activity?.let {
-            notesViewModel.getAllNotes().observe(viewLifecycleOwner){ note->
-                noteAdapter.differ.submitList(note)
-                updateUI(note)
+
+            val _allNotes = notesViewModel.getAllNotes()
+            val _filterQuery = MutableLiveData<String>()
+
+            val filteredNotes: LiveData<List<Note>> = _filterQuery.switchMap { query ->
+                _allNotes.map { notes ->
+                    notes.filter { note ->
+                        note.noteTag == tag
+                    }
+                }
+            }
+            _allNotes.observe(viewLifecycleOwner){notes ->
+                Log.d("Test Number of items", "Num of notes: ${notes.size}")
+            }
+            _filterQuery.value = ""
+            filteredNotes.observe(viewLifecycleOwner) { notes ->
+                Log.d("HomeFragment", "Filtered notes: ${notes.size}")
+                noteAdapter.differ.submitList(notes)
+                updateUI(notes)
             }
         }
-    }
 
+    }
     private fun searchNote(query: String?){
         val searchQuery = " %$query"
 

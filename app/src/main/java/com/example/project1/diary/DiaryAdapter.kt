@@ -5,10 +5,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.project1.Memo.adapter.NoteAdapter.NoteViewHolder
 import com.example.project1.R
+import com.example.project1.databinding.NoteLayoutBinding
 
-class DiaryAdapter (private val itemList: ArrayList<Diaries>): RecyclerView.Adapter<DiaryAdapter.Holder>() {
+class DiaryAdapter (): RecyclerView.Adapter<DiaryAdapter.Holder>() {
+
+    private val diffCallback = object : DiffUtil.ItemCallback<Diaries>() {
+        override fun areItemsTheSame(oldItem: Diaries, newItem: Diaries): Boolean {
+            return oldItem.id == newItem.id // ID가 같은지 여부로 항목 비교
+        }
+
+        override fun areContentsTheSame(oldItem: Diaries, newItem: Diaries): Boolean {
+            return oldItem.diaryName == newItem.diaryName // 내용이 같은지 여부로 항목 비교
+        }
+    }
 
     interface OnItemClickListener{
         fun onCardViewClick(view: View, diaries: Diaries, pos: Int)
@@ -34,12 +48,15 @@ class DiaryAdapter (private val itemList: ArrayList<Diaries>): RecyclerView.Adap
             }
         }
     }
+    val differ = AsyncListDiffer(this, diffCallback)
     override fun onBindViewHolder(holder: DiaryAdapter.Holder, position: Int) {
+        val itemList = differ.currentList
         holder.bind(itemList[position])
     }
-
-    override fun getItemCount(): Int {
-        return itemList.size
+    fun submitList(list: List<Diaries>) {
+        differ.submitList(list)
     }
-
+    override fun getItemCount(): Int {
+        return differ.currentList.size
+    }
 }

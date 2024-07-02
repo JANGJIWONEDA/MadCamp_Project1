@@ -34,6 +34,7 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
     private lateinit var notesViewModel: NoteViewModel
     private lateinit var addNoteView: View
 
+    private lateinit var tag:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,13 +61,13 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
     private fun saveNote(view: View){
         val noteTitle = binding.addNoteTitle.text.toString().trim()
         val noteDesc = binding.addNoteDesc.text.toString().trim()
-
+        tag = (activity as DiaryProfile).diary_id
         if(noteTitle.isNotEmpty())
         {
-            val note = Note(0, noteTitle, noteDesc)
+            val note = Note(0, noteTitle, noteDesc, tag)
             notesViewModel.addNote(note)
 
-            Toast.makeText(addNoteView.context, "NOTE SAVED", Toast.LENGTH_SHORT).show()
+            Toast.makeText(addNoteView.context, "NOTE SAVED notestag:${note.noteTag}", Toast.LENGTH_SHORT).show()
             view.findNavController().popBackStack(R.id.homeFragment, false)
         } else{
             Toast.makeText(addNoteView.context, "Please enter note title", Toast.LENGTH_SHORT).show()

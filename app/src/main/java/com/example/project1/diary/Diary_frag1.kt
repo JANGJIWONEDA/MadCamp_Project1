@@ -1,5 +1,6 @@
 package com.example.project1.diary
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -15,6 +16,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project1.MainActivity
@@ -24,7 +27,11 @@ import com.example.project1.contact.ContactEditer
 import com.example.project1.contact.ContactHandler
 import com.example.project1.contact.ContactProfile
 import com.example.project1.contact.Contacts
+import com.example.project1.diary.database.DiaryDatabase
+import com.example.project1.diary.repository.DiaryRepository
 import com.google.gson.Gson
+import kotlinx.coroutines.launch
+import com.example.project1.Memo.fragments.EditNoteFragment
 
 class Diary_frag1 : Fragment() {
 
@@ -34,6 +41,8 @@ class Diary_frag1 : Fragment() {
     private lateinit var editButton: Button
     private lateinit var deleteButton: Button
     private lateinit var diaries_frag: Diary_frag1
+    private lateinit var diaryRepository: DiaryRepository
+    private var id : String?=null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,17 +53,22 @@ class Diary_frag1 : Fragment() {
 
         val rootView =  inflater.inflate(R.layout.fragment_diary_frag1, container, false) // XML 파일명 수정
         val name = arguments?.getString("name") ?: ""
-        val tag = arguments?.getString("tag") ?: ""
+        val tag_d = arguments?.getString("tag")
+        id = arguments?.getString("id")?:""
+
+        Log.d("test", "tag : ${tag_d} name: ${name}, id:${id}")
         profileName = rootView.findViewById(R.id.travelDiaryName)
         profileTag = rootView.findViewById(R.id.travelDiaryTag)
         profileName.text = name
-        profileTag.text = tag
-
+        profileTag.text = tag_d
+        Log.d("test", "${tag_d}, ${profileTag.text}, ${name}, ${profileName.text}, id:${id}")
         diaries_frag = this
+
+        diaryRepository = DiaryRepository(DiaryDatabase(requireContext()))
 
         val ch = ContactHandler(context)
         val contactList = ch.getContactsList()
-        val filteredContactList = contactList.filter{it -> (it.contactTag1 == tag || it.contactTag2 == tag || it.contactTag3 == tag)}
+        val filteredContactList = contactList.filter{it -> (it.contactTag1 == tag_d || it.contactTag2 == tag_d || it.contactTag3 == tag_d)}
 
         val contactAdapter = ContactAdapter(filteredContactList)
 
@@ -87,7 +101,7 @@ class Diary_frag1 : Fragment() {
 
         deleteButton = rootView.findViewById(R.id.deleted_point)
         deleteButton.setOnClickListener{
-            onClickDeleteDiaryButton(it)
+            onClickDeleteDiaryButton(it, id!!.toInt(), name, tag_d!!)
 
         }
 
@@ -95,20 +109,27 @@ class Diary_frag1 : Fragment() {
         return rootView
     }
 
-    private fun onClickDeleteDiaryButton(view: View){
-        val dh = DiaryHandler(context)
-        val diaryList = dh.getDiariesList()
+    private fun onClickDeleteDiaryButton(view: View, id : Int, name: String, tag: String){
 
-        val diaryName = profileName.text.toString()
+        viewLifecycleOwner.lifecycleScope.launch {
+            diaryRepository.deleteDiary(
+                Diaries(
+                    id = id,
+                    diaryName = name,
+                    diaryTag = tag,
+                    timestamp = System.currentTimeMillis()
+                )
+            )
+            val viewmodel = (activity as DiaryProfile).noteViewModel
+            viewmodel.deleteNoteById(id.toString())
+            Toast.makeText(context, "${name}의 기억을 잊어버렸어요", Toast.LENGTH_SHORT).show()
+        }
 
-
-        val filteredDiaryList = diaryList.filter{ di -> di.diaryName != diaryName}
-        val gson = Gson()
-        val newDiaryListJson: String = gson.toJson(filteredDiaryList)
-
-        dh.writeDiaryList(newDiaryListJson)
-
-        Toast.makeText(context, "$diaryName 를 잊어버렸어요", Toast.LENGTH_SHORT).show()
+//        val filteredDiaryList = diaryList.filter{ di -> di.diaryName != diaryName}
+//        val gson = Gson()
+//        val newDiaryListJson: String = gson.toJson(filteredDiaryList)
+//
+//        dh.writeDiaryList(newDiaryListJson)
 
         val intent = Intent(activity, MainActivity::class.java)
         startActivity(intent)
@@ -118,7 +139,9 @@ class Diary_frag1 : Fragment() {
         val intent = Intent(activity, DiaryEditer::class.java)
         intent.putStringArrayListExtra("diaryedit", arrayListOf(
             profileName.text.toString(),
-            profileTag.text.toString()))
+            profileTag.text.toString(),
+            id)
+        )
 
         activity?.supportFragmentManager
             ?.beginTransaction()

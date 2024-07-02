@@ -9,14 +9,22 @@ import com.example.project1.contact.Frag1
 import com.example.project1.databinding.ActivityMainBinding
 import com.example.project1.diary.Frag3
 import com.example.project1.photobox.Frag2
+import com.example.project1.diary.database.DiaryDatabase
+import com.example.project1.diary.repository.DiaryRepository
+
 
 class MainActivity : AppCompatActivity() {
 
     private var mBinding: ActivityMainBinding? = null
     private val binding get() = mBinding!!
+    lateinit var diaryRepository: DiaryRepository
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        diaryRepository = DiaryRepository(DiaryDatabase(this))
+
 
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
