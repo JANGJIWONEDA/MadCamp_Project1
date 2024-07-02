@@ -33,4 +33,5 @@
         android:maxLines="1"
         android:fontFamily="@font/font1"
         />
+
 </LinearLayout>

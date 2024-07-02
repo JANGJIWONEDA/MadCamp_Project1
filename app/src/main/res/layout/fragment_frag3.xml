@@ -3,26 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#B398DA"
+    android:background="#FFFFFF"
     android:orientation="vertical">
+
     <android.widget.Button
         android:id="@+id/add_diaries"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentRight="true"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:background="@drawable/contact_button"
         android:elevation="10dp"
-        android:text="+"
-        android:textSize="60sp">
-    </android.widget.Button>
-
+        android:fontFamily="@font/font1"
+        android:onClick="onClickAddDiaryButton"
+        android:text="여행지 추가"
+        android:textSize="15sp"></android.widget.Button>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_Diary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp" />
+        android:layout_height="380dp"
+        android:layout_marginTop="100dp" />
+
+    <!-- 텍스트뷰를 그리드뷰 위에 배치 -->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="[여행의 기록]"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/font1"/>
 
 </RelativeLayout>

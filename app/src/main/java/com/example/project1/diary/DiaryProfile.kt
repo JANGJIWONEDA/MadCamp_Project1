@@ -1,10 +1,12 @@
 package com.example.project1.diary
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.example.project1.MainActivity
 import com.example.project1.Memo.databse.NoteDatabase
 import com.example.project1.Memo.fragments.HomeFragment
 import com.example.project1.Memo.repository.NoteRepository
@@ -52,5 +54,14 @@ class DiaryProfile : AppCompatActivity() {
         val noteRepository = NoteRepository(NoteDatabase(this))
         val viewModelProviderFactory = NoteViewModelFactory(application, noteRepository)
         noteViewModel = ViewModelProvider(this, viewModelProviderFactory)[NoteViewModel::class.java]
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Start MainActivity and navigate to Frag3
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("fragment", "frag3")
+        startActivity(intent)
+        finish() // Finish the current activity
     }
 }

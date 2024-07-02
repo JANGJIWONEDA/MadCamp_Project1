@@ -19,7 +19,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/font1"/>
 
     <ImageView
         android:id="@+id/title_underline"
@@ -46,7 +47,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_underline"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintVertical_bias="0.017"
+        android:fontFamily="@font/font1"/>
 
     <EditText
         android:id="@+id/add_phone"
@@ -54,7 +56,7 @@
 
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="-20dp"
+        android:layout_marginTop="-0dp"
         android:layout_marginRight="20dp"
         android:hint="연락처를 입력하세요"
         android:inputType="phone"
@@ -63,7 +65,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_title"
-        app:layout_constraintVertical_bias="0.015" />
+        app:layout_constraintVertical_bias="0.015"
+        android:fontFamily="@font/font1"/>
 
     <TextView
         android:id="@+id/contact_name"
@@ -78,7 +81,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_phone"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.05"
+        android:fontFamily="@font/font1"/>
 
 
     <EditText
@@ -86,7 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="-20dp"
+        android:layout_marginTop="-0dp"
         android:layout_marginRight="20dp"
         android:hint="이름을 입력하세요"
         android:inputType="textPersonName"
@@ -94,7 +98,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contact_name"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.018"
+        android:fontFamily="@font/font1"/>
     <TextView
         android:id="@+id/contact_relation"
         android:layout_width="match_parent"
@@ -108,7 +113,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_name"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.05"
+        android:fontFamily="@font/font1"/>
 
 
     <EditText
@@ -116,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="-20dp"
+        android:layout_marginTop="-0dp"
         android:layout_marginRight="20dp"
         android:hint="어떤 사람인가요?"
         android:inputType="textPersonName"
@@ -124,7 +130,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contact_relation"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.018"
+        android:fontFamily="@font/font1"/>
     <TextView
         android:id="@+id/contact_tag1"
         android:layout_width="match_parent"
@@ -138,7 +145,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_relation"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.05"
+        android:fontFamily="@font/font1"/>
 
 
     <AutoCompleteTextView
@@ -148,13 +156,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="-0dp"
         android:layout_marginRight="20dp"
-        android:hint="여행지를 적어주세요!"
+        android:hint="여행지를 적어주세요"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contact_tag1"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.018"
+        android:fontFamily="@font/font1"/>
 
     <AutoCompleteTextView
         android:id="@+id/add_tag2"
@@ -163,13 +172,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="-0dp"
         android:layout_marginRight="20dp"
-        android:hint="여행지를 적어주세요!"
+        android:hint="여행지를 적어주세요"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_tag1"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.018"
+        android:fontFamily="@font/font1"/>
 
 
     <AutoCompleteTextView
@@ -179,23 +189,28 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="-0dp"
         android:layout_marginRight="20dp"
-        android:hint="여행지를 적어주세요!"
+        android:hint="여행지를 적어주세요"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_tag2"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.018"
+        android:fontFamily="@font/font1"/>
 
     <android.widget.Button
-        android:layout_width="280dp"
-        android:layout_height="60dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/contact_button"
+        android:fontFamily="@font/font1"
         android:onClick="onClickAddContactButton"
+        android:text="연락처 추가"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

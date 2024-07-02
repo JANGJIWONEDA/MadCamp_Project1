@@ -71,7 +71,9 @@ class DiaryEditer : AppCompatActivity() {
         val newDiariesListJson: String = gson.toJson(filteredDiaryList)
         dh.writeDiaryList(newDiariesListJson)
 
-        val intent = Intent(this@DiaryEditer, DiaryProfile::class.java)
+        val intent = Intent(this@DiaryEditer, MainActivity::class.java)
+        intent.putExtra("fragment", "frag3")
+        startActivity(intent)
 
         intent.putStringArrayListExtra("diaryprofile", arrayListOf(newDiaryName, newDiaryTag))
         startActivity(intent)

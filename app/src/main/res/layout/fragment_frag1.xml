@@ -3,40 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#B398DA"
     android:orientation="vertical">
+
+
     <android.widget.Button
         android:id="@+id/add_contacts"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentRight="true"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="50dp"
-        android:elevation="10dp"
-        android:text="+"
-        android:textSize="60sp">
-    </android.widget.Button>
-
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="연락처 추가"
+        android:fontFamily="@font/font1"
+        android:background="@drawable/contact_button"
+        android:textSize="15sp"></android.widget.Button>
 
     <android.widget.Button
         android:id="@+id/add_from_local_point"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
         android:elevation="10dp"
         android:onClick="onClickFromLocalContactButton"
-        android:text="연락처"
+        android:text="연락처 보기"
         android:textSize="15sp"
-        app:layout_constraintTop_toTopOf="parent">
-    </android.widget.Button>
+        android:fontFamily="@font/font1"
+        android:background="@drawable/contact_button"
+        app:layout_constraintTop_toTopOf="parent"></android.widget.Button>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp" />
+        android:layout_height="350dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/font1" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/contact_search_view"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/font1"
+        android:background="@drawable/search_view"
+        app:iconifiedByDefault="false"
+        app:queryHint="보고싶은 인연 검색"/>
 
 </RelativeLayout>

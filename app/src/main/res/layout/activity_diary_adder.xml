@@ -14,6 +14,7 @@
         android:text="여행의 추억 추가하기"
         android:textSize="22dp"
         android:textStyle="bold"
+        android:fontFamily="@font/font1"
         android:layout_marginLeft="20dp"
         app:layout_constraintVertical_bias="0.03"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,6 +41,7 @@
         android:text="추억의 이름"
         android:textColor="#555555"
         android:textSize="20dp"
+        android:fontFamily="@font/font1"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,9 +56,10 @@
 
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="-20dp"
+        android:layout_marginTop="0dp"
         android:layout_marginRight="20dp"
-        android:hint="이 추억의 이름을 정해주세요!"
+        android:hint="이 추억의 이름을 정해주세요"
+        android:fontFamily="@font/font1"
         android:maxLength="13"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +76,7 @@
         android:textColor="#555555"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:fontFamily="@font/font1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,6 +91,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="-0dp"
         android:layout_marginRight="20dp"
+        android:fontFamily="@font/font1"
         android:hint="어디를 여행하고 오셨나요?"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,16 +102,19 @@
 
 
     <android.widget.Button
-        android:layout_width="280dp"
-        android:layout_height="60dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="60dp"
         android:onClick="onClickAddDiaryButton"
-        android:text="add"
+        android:text="여행의 기록 추가"
+        android:textSize="15dp"
+        android:fontFamily="@font/font1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_TravelTag" />
+        app:layout_constraintTop_toBottomOf="@+id/add_TravelTag"
+        android:background="@drawable/contact_button"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

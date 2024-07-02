@@ -97,6 +97,15 @@ class ContactProfile : AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Start MainActivity and navigate to Frag3
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("fragment", "frag1")
+        startActivity(intent)
+        finish() // Finish the current activity
+    }
+
 //    private fun addOnBackPressedCallback() {
 //        val callback = object : OnBackPressedCallback(true) {
 //            override fun handleOnBackPressed() {

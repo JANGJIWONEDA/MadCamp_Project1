@@ -2,87 +2,96 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        card_view:cardCornerRadius="4dp"
+        card_view:cardCornerRadius="0dp"
+        android:layout_margin="8dp"
         >
+
         <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:background="@drawable/contact_button"
+            android:orientation="vertical">
+            <!-- 여기에 추가적인 UI 요소들을 추가할 수 있습니다 -->
+
             <TextView
+                android:id="@+id/contactName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="25dp"
                 android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/font1"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
                 android:text="이름"
                 android:textColor="@color/black"
-                android:textSize="30dp"
-                android:gravity="center_vertical"
-                android:id="@+id/contactName"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="-5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="-5dp">
-            </ImageView>
+                android:textSize="20dp" />
+
             <TextView
+                android:id="@+id/contactRelation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:text="관계"
-                android:textColor="@color/black"
-                android:textSize="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/font1"
                 android:gravity="center_vertical"
-                android:id="@+id/contactRelation"/>
+                android:text="관계"
+                android:textColor="#555555"
+                android:textSize="16dp"
+                />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                >
+                android:layout_marginLeft="5dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone">
+
                 <TextView
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/font1"
+                    android:gravity="center_vertical"
                     android:text="전화번호  "
-                    android:textSize="16sp"
-                    android:gravity="center_vertical"
-                    />
-                <TextView
                     android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/phoneNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="5dp"
-                    android:text="전화번호"
-                    android:textSize="16sp"
+                    android:fontFamily="@font/font1"
                     android:gravity="center_vertical"
-                    android:id="@+id/phoneNumber"/>
+                    android:text="전화번호"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <android.widget.Button
         android:id="@+id/call_point"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="27dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/call"
         android:elevation="10dp"
         android:onClick="onClickCallButton"
-        android:text="전화걸기"
-        android:textSize="15sp">
-    </android.widget.Button>
+        android:textSize="15sp"></android.widget.Button>
 </RelativeLayout>

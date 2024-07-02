@@ -42,6 +42,7 @@ class DiaryAdder : AppCompatActivity() {
         dh.writeDiaryList(newDiariesListJson)
 
         val intent = Intent(this@DiaryAdder, MainActivity::class.java)
+        intent.putExtra("fragment", "frag3")
         startActivity(intent)
     }
 //    private fun addOnBackPressedCallback() {

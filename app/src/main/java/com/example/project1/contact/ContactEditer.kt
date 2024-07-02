@@ -2,6 +2,7 @@ package com.example.project1.contact
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -95,6 +96,7 @@ class ContactEditer : AppCompatActivity() {
     }
 
     fun onClickEditContactButton(view: View) {
+        Log.d("test", "Save button pressed in CONTACTPROFILE")
         val ch = ContactHandler(applicationContext)
         val contactList = ch.getContactsList()
 
@@ -134,6 +136,7 @@ class ContactEditer : AppCompatActivity() {
         val newContactsListJson: String = gson.toJson(filteredContactList)
         ch.writeContactList(newContactsListJson)
 
+        Log.d("test", "new relation : $newContactRelation new phone: $newContactPhone")
         val intent = Intent(this@ContactEditer, MainActivity::class.java)
         startActivity(intent)
     }

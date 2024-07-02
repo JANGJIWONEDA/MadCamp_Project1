@@ -9,7 +9,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="12dp"
-        tools:context=".Memo.fragments.EditNoteFragment">
+        tools:context=".Memo.fragments.EditNoteFragment"
+        android:background="#ffffff">
 
         <TextView
             android:id="@+id/editNoteHeading"
@@ -17,62 +18,71 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins"
-            android:text="Edit Note."
+            android:fontFamily="@font/font1"
+            android:text="메모 편집하기"
             android:textStyle="bold"
-            android:textColor="@color/red"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <EditText
             android:id="@+id/editNoteTitle"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:hint="Enter the title"
+            android:hint="제목을 적어주세요"
             android:padding="12dp"
             android:textSize="20sp"
             android:layout_below="@id/editNoteHeading"
-            android:background="@drawable/pink_border"
+            android:background="@drawable/contact_button"
             android:layout_marginTop="16dp"
             android:maxLines="1"
-            android:fontFamily="@font/poppins"/>
+            android:fontFamily="@font/font1"/>
 
         <EditText
             android:id="@+id/editNoteDesc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter the description"
+            android:hint="내용을 적어주세요"
             android:gravity="top"
             android:padding="12dp"
             android:textSize="18sp"
-            android:fontFamily="@font/poppins"
-            android:background="@drawable/pink_border"
+            android:fontFamily="@font/font1"
+            android:background="@drawable/contact_button"
             android:layout_below="@id/editNoteTitle"
             android:layout_marginTop="12dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <android.widget.Button
             android:id="@+id/editNoteFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:backgroundTint="@color/pink"
-            android:tintMode="@color/white"
-            android:src="@drawable/baseline_done_24"
-            android:layout_alignParentBottom="true"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:contentDescription="editFab" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="90dp"
+            android:background="@drawable/contact_button"
+            android:clickable="true"
+            android:contentDescription="editFab"
+            android:src="@drawable/baseline_done_24"
+            android:text="메모 편집"
+            android:textSize="15sp"
+            android:fontFamily="@font/font1"
+            android:tintMode="@color/white" />
 
         <android.widget.Button
             android:id="@+id/deleteNoteButton"
-            android:layout_height="60dp"
-            android:layout_width="80dp"
-            android:layout_marginBottom="60dp"
-            android:onClick="onClickDeleteNoteButton"
-            android:text="delete"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true">
-        </android.widget.Button>
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/contact_button"
+            android:clickable="true"
+            android:contentDescription="editFab"
+            android:src="@drawable/baseline_done_24"
+            android:text="메모 삭제"
+            android:textSize="15sp"
+            android:fontFamily="@font/font1"
+            android:tintMode="@color/white"></android.widget.Button>
 
 
     </RelativeLayout>

@@ -13,6 +13,18 @@
         android:scaleType="fitCenter" />
 
     <TextView
+        android:id="@+id/textViewTag"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp"
+        android:hint="Enter Description"
+        android:inputType="text"
+        android:maxLines="1"
+        android:fontFamily="@font/font1"
+        />
+
+    <TextView
         android:id="@+id/textViewDescription"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -22,17 +34,6 @@
         android:maxLines="1"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/font1"
-         />
-
-    <TextView
-        android:id="@+id/textViewTag"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="bottom"
-        android:hint="Enter Description"
-        android:inputType="text"
-        android:maxLines="1"
-        android:fontFamily="@font/font1"
-         />
+        />
 
 </LinearLayout>

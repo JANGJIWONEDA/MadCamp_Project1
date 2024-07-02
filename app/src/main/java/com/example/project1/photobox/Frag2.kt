@@ -1,15 +1,18 @@
-package com.example.project1
+package com.example.project1.photobox
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -17,17 +20,21 @@ import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.project1.R
+import com.example.project1.MainActivity
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import android.Manifest;
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.res.ResourcesCompat
+import com.example.project1.MainMenu
 
-@Suppress("DEPRECATION")
 class Frag2 : Fragment() {
     private val PERMISSION_REQUEST_CODE = 1001 // 권한 요청 코드 정의
 
@@ -35,23 +42,49 @@ class Frag2 : Fragment() {
     private lateinit var gridView: GridView
     private lateinit var myGridAdapter: MyGridAdapter
 
+    private val imageDataList = ArrayList<ImageData>()
+    private var filteredImageDataList = ArrayList<ImageData>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_frag2, container, false)
 
-        gridView = view.findViewById(R.id.gridView)
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.animation3)
+        view.startAnimation(animation)
+
+        gridView = view.findViewById<GridView>(R.id.gridView)
         myGridAdapter = MyGridAdapter(requireContext())
         gridView.adapter = myGridAdapter
 
+        // Fragment가 생성될 때 이미지 데이터를 로드
+        readImageDataFromJsonFile()
+
+        // SearchView 설정
+        val searchView = view.findViewById<SearchView>(R.id.search_view)
+        val searchText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        val customFont: Typeface? = ResourcesCompat.getFont(requireContext(), R.font.font1)
+        searchText.typeface = customFont
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // 검색 버튼을 눌렀을 때 처리
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // 검색어가 변경될 때마다 호출되는 처리
+                filterImages(newText)
+                return true
+            }
+        })
+
+        // Select Image 버튼 설정
         val selectImageButton = view.findViewById<Button>(R.id.select_image_button)
         selectImageButton.setOnClickListener {
             openGallery()
         }
-
-        // Fragment가 생성될 때 저장된 이미지 데이터를 로드
-        readImageDataFromJsonFile()
 
         return view
     }
@@ -92,15 +125,19 @@ class Frag2 : Fragment() {
     data class ImageData(val imageUri: Uri, val description: String, val tag: String)
 
     inner class MyGridAdapter(private val context: Context) : BaseAdapter() {
-        val imageUris = ArrayList<Uri>()
-        val imageDatas = ArrayList<ImageData>()
+        var imageDataList = ArrayList<ImageData>()
+
+        fun setImageDataList(imageDataList: List<ImageData>) {
+            this.imageDataList = ArrayList(imageDataList)
+            notifyDataSetChanged()
+        }
 
         override fun getCount(): Int {
-            return imageUris.size
+            return imageDataList.size
         }
 
         override fun getItem(position: Int): Any {
-            return imageUris[position]
+            return imageDataList[position]
         }
 
         override fun getItemId(position: Int): Long {
@@ -109,19 +146,16 @@ class Frag2 : Fragment() {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val imageView = convertView as? ImageView ?: ImageView(context).apply {
-                layoutParams = ViewGroup.LayoutParams(200, 200)
+                layoutParams = ViewGroup.LayoutParams(250, 250)
                 scaleType = ImageView.ScaleType.CENTER_CROP
                 setPadding(0, 0, 0, 0)
             }
 
-            val imageUri = getItem(position) as Uri
-            imageView.setImageURI(imageUri)
-
-            val description = imageDatas.find { it.imageUri == imageUri }?.description ?: ""
-            val tag = imageDatas.find { it.imageUri == imageUri }?.tag ?: ""
+            val imageData = getItem(position) as ImageData
+            imageView.setImageURI(imageData.imageUri)
 
             imageView.setOnClickListener {
-                showImageDialog(imageUri, description, tag)
+                showImageDialog(imageData)
             }
 
             return imageView
@@ -139,8 +173,7 @@ class Frag2 : Fragment() {
                 .setPositiveButton("Select") { dialog, _ ->
                     val description = editTextDescription.text.toString()
                     val tag = editTextTag.text.toString()
-                    imageDatas.add(ImageData(uri, description, tag))
-                    imageUris.add(uri)
+                    imageDataList.add(ImageData(uri, description, tag))
                     notifyDataSetChanged()
                     dialog.dismiss()
 
@@ -153,34 +186,35 @@ class Frag2 : Fragment() {
                 .show()
         }
 
-        private fun showImageDialog(imageUri: Uri, description: String, tag: String) {
+        private fun showImageDialog(imageData: ImageData) {
             val dialogView = LayoutInflater.from(context).inflate(R.layout.image_dialog, null)
             val dialogImageView = dialogView.findViewById<ImageView>(R.id.dialogImageView)
             val textViewDescription = dialogView.findViewById<TextView>(R.id.textViewDescription)
             val textViewTag = dialogView.findViewById<TextView>(R.id.textViewTag)
 
-            dialogImageView.setImageURI(imageUri) // 이미지 설정
-            textViewDescription.text = "가고 싶은 곳: $description"  // 텍스트 설정
-            textViewTag.text = "여행지: $tag" // 텍스트 설정
+            dialogImageView.setImageURI(imageData.imageUri) // 이미지 설정
+            textViewDescription.text = "가고 싶은 곳: ${imageData.description}"  // 텍스트 설정
+            textViewTag.text = "여행지: ${imageData.tag}" // 텍스트 설정
 
-            AlertDialog.Builder(context)
+            val alertDialog = AlertDialog.Builder(context)
                 .setView(dialogView)
                 .setPositiveButton("Close") { dialog, _ ->
                     dialog.dismiss()
                 }
                 .setNegativeButton("Delete") { dialog, _ ->
-                    val position = imageUris.indexOf(imageUri)
-                    if (position != -1) {
-                        imageUris.removeAt(position)
-                        imageDatas.removeAt(position)
-                        notifyDataSetChanged()
-
-                        // 이미지가 삭제될 때마다 JSON 파일에 저장
-                        writeImageDataToJsonFile()
-                    }
+                    // 이미지 삭제 처리
+                    deleteImage(imageData)
                     dialog.dismiss()
                 }
                 .show()
+        }
+
+        private fun deleteImage(imageData: ImageData) {
+            imageDataList.remove(imageData)
+            notifyDataSetChanged()
+
+            // JSON 파일에 변경된 이미지 데이터를 저장
+            writeImageDataToJsonFile()
         }
     }
 
@@ -189,14 +223,14 @@ class Frag2 : Fragment() {
         val jsonObject = JSONObject()
         jsonObject.put("imageUri", imageUri.toString())
         jsonObject.put("description", description)
-        jsonObject.put("tag", description)
+        jsonObject.put("tag", tag)
         return jsonObject.toString()
     }
 
     // JSON 파일에 ImageData 리스트를 저장
     private fun writeImageDataToJsonFile() {
         val jsonArray = JSONArray()
-        for (imageData in myGridAdapter.imageDatas) {
+        for (imageData in myGridAdapter.imageDataList) {
             jsonArray.put(JSONObject(imageData.toJson()))
         }
 
@@ -228,13 +262,45 @@ class Frag2 : Fragment() {
                 val imageUri = Uri.parse(jsonObject.getString("imageUri"))
                 val description = jsonObject.getString("description")
                 val tag = jsonObject.getString("tag")
-                myGridAdapter.imageDatas.add(ImageData(imageUri, description, tag))
-                myGridAdapter.imageUris.add(imageUri)
+                imageDataList.add(ImageData(imageUri, description, tag))
             }
 
-            myGridAdapter.notifyDataSetChanged()
+            // 필터링 없이 모든 이미지를 일단 추가
+            filteredImageDataList.addAll(imageDataList)
+            myGridAdapter.setImageDataList(filteredImageDataList)
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    // SearchView를 통해 이미지 필터링
+    private fun filterImages(query: String?) {
+        if (query.isNullOrBlank()) {
+            // 검색어가 비어있으면 모든 이미지를 보여줌
+            myGridAdapter.setImageDataList(imageDataList)
+        } else {
+            // 검색어가 있으면 해당 검색어를 포함하는 tag를 가진 이미지만 필터링
+            filteredImageDataList.clear()
+            for (imageData in imageDataList) {
+                if (imageData.tag.startsWith(query, ignoreCase = true)) {
+                    filteredImageDataList.add(imageData)
+                }
+            }
+            myGridAdapter.setImageDataList(filteredImageDataList)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val intent = Intent(requireActivity(), MainMenu::class.java).apply {
+                }
+                startActivity(intent)
+                requireActivity().finish()
+            }
+        })
     }
 }

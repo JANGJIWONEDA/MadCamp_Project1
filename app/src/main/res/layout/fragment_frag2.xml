@@ -1,31 +1,45 @@
-<!--frag xml-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center|bottom"
-    android:layout_marginBottom="140dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center">
 
     <!-- 버튼을 먼저 정의 -->
-    <Button
+    <android.widget.Button
         android:id="@+id/select_image_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentTop="true"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="이미지 선택"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/select_image" />
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/font1"
+        android:background="@drawable/contact_button" />
 
-    <!-- 그리드뷰를 버튼 아래에 배치 -->
+    <!-- 그리드뷰를 버튼 위에 배치 -->
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/select_image_button"
-        android:layout_marginTop="-453dp"
-        android:gravity="top"
-        android:numColumns="5" />
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        android:numColumns="4"
+        android:layout_above="@id/select_image_button"
+        android:layout_marginBottom="20dp" />
 
+    <!-- 텍스트뷰를 그리드뷰 위에 배치 -->
 
-    <!-- 추가적인 UI 요소들을 정의할 수 있습니다 -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_above="@id/gridView"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/font1"
+        app:iconifiedByDefault="false"
+        app:queryHint="보고 싶은 추억 검색"
+        android:background="@drawable/search_view"/>
 
 </RelativeLayout>
