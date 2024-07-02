@@ -66,6 +66,16 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         binding.addNoteFab.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
         }
+        binding.memoSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchNote(newText)
+                return true
+            }
+        })
     }
     
     private fun updateUI(note: List<Note>?){
@@ -114,7 +124,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     }
     private fun searchNote(query: String?){
         val searchQuery = " %$query"
-
+        Log.d("Test searchNote", "${searchQuery}")
         notesViewModel.searchNote(searchQuery).observe(this) {list ->
             noteAdapter.differ.submitList(list)}
     }

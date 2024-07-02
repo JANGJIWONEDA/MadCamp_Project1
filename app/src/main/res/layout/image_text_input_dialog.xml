@@ -12,7 +12,7 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/editTextTag"
         android:layout_width="match_parent"
         android:layout_height="70dp"

@@ -1,5 +1,7 @@
 package com.example.project1.diary.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import com.example.project1.diary.database.DiaryDatabase
 import com.example.project1.diary.Diaries
 
@@ -11,4 +13,9 @@ class DiaryRepository(private val db: DiaryDatabase) {
 
     fun getAllDiaries() = db.getDiaryDao().getAllDiaries()
     fun getDiaryById(id: Int) = db.getDiaryDao().getDiaryById(id)
+    fun getAllDiaryTags() : LiveData<List<String>> {
+        return db.getDiaryDao().getAllDiaries().map{ diaries ->
+            diaries.map { it.diaryTag }.distinct()
+        }
+    }
 }

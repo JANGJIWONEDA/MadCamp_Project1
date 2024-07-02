@@ -15,9 +15,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import com.example.project1.MainActivity
 import com.example.project1.R
 import com.example.project1.diary.DiaryHandler
+import com.example.project1.diary.database.DiaryDatabase
+import com.example.project1.diary.repository.DiaryRepository
 import com.google.gson.Gson
 
 class ContactEditer : AppCompatActivity() {
@@ -38,32 +41,43 @@ class ContactEditer : AppCompatActivity() {
     private var oldTag2: String? = null
     private var oldTag3: String? = null
 
-    private lateinit var searchList: MutableSet<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_editer)
 
-        searchList = mutableSetOf()
-        setSearchList()
 
         autoCompleteTextView1 = findViewById(R.id.edit_tag1)
         autoCompleteTextView2 = findViewById(R.id.edit_tag2)
         autoCompleteTextView3 = findViewById(R.id.edit_tag3)
 
-        autoCompleteTextView1.setAdapter(
-            ArrayAdapter<String>(this,
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, searchList.toList())
-        )
+        val diaryRepository = DiaryRepository(DiaryDatabase(this))
+        diaryRepository.getAllDiaryTags().observe(this, Observer { tags ->
+            tags?.let {
+                autoCompleteTextView1.setAdapter(
+                    ArrayAdapter<String>(
+                        this,
+                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                        tags
+                    )
+                )
 
-        autoCompleteTextView2.setAdapter(
-            ArrayAdapter<String>(this,
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, searchList.toList())
-        )
-        autoCompleteTextView3.setAdapter(
-            ArrayAdapter<String>(this,
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, searchList.toList())
-        )
+                autoCompleteTextView2.setAdapter(
+                    ArrayAdapter<String>(
+                        this,
+                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                        tags
+                    )
+                )
+                autoCompleteTextView3.setAdapter(
+                    ArrayAdapter<String>(
+                        this,
+                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                        tags
+                    )
+                )
+            }
+        })
 
         profileName = findViewById(R.id.edit_name)
         profilePhone = findViewById(R.id.edit_phone)
@@ -151,9 +165,4 @@ class ContactEditer : AppCompatActivity() {
         this.onBackPressedDispatcher.addCallback(this, callback)
     }
 
-    private fun setSearchList(){
-        val dh = DiaryHandler(applicationContext)
-        val diaryList = dh.getDiariesList()
-        diaryList.forEach{it -> searchList.add(it.diaryTag)}
-    }
 }

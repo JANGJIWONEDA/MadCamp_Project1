@@ -20,4 +20,5 @@ interface DiaryDao {
 
     @Query("SELECT * FROM diaries WHERE id = :id")
     fun getDiaryById(id: Int): LiveData<Diaries>
+
 }

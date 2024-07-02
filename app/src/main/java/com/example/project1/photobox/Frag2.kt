@@ -12,7 +12,10 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.view.animation.AnimationUtils
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -33,7 +36,10 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.Observer
 import com.example.project1.MainMenu
+import com.example.project1.diary.database.DiaryDatabase
+import com.example.project1.diary.repository.DiaryRepository
 
 class Frag2 : Fragment() {
     private val PERMISSION_REQUEST_CODE = 1001 // 권한 요청 코드 정의
@@ -53,6 +59,8 @@ class Frag2 : Fragment() {
 
         val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.animation3)
         view.startAnimation(animation)
+
+
 
         gridView = view.findViewById<GridView>(R.id.gridView)
         myGridAdapter = MyGridAdapter(requireContext())
@@ -165,14 +173,34 @@ class Frag2 : Fragment() {
             val dialogView = LayoutInflater.from(context).inflate(R.layout.image_text_input_dialog, null)
             val dialogImageView = dialogView.findViewById<ImageView>(R.id.dialogImageView)
             val editTextDescription = dialogView.findViewById<EditText>(R.id.editTextDescription)
-            val editTextTag = dialogView.findViewById<EditText>(R.id.editTextTag)
+            val autoCompleteImageTag : AutoCompleteTextView = dialogView.findViewById<AutoCompleteTextView>(R.id.editTextTag)
+
+            autoCompleteImageTag.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    autoCompleteImageTag.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    adjustDropDownPosition(autoCompleteImageTag)
+                }
+            })
+
             dialogImageView.setImageURI(uri)
+            val diaryRepository = DiaryRepository(DiaryDatabase(requireContext()))
+            diaryRepository.getAllDiaryTags().observe(viewLifecycleOwner, Observer { tags ->
+                tags?.let {
+                    autoCompleteImageTag.setAdapter(
+                        ArrayAdapter<String>(
+                            context,
+                            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                            tags
+                        )
+                    )
+                }
+            })
 
             val alertDialog = AlertDialog.Builder(context)
                 .setView(dialogView)
                 .setPositiveButton("Select") { dialog, _ ->
                     val description = editTextDescription.text.toString()
-                    val tag = editTextTag.text.toString()
+                    val tag = autoCompleteImageTag.text.toString()
                     imageDataList.add(ImageData(uri, description, tag))
                     notifyDataSetChanged()
                     dialog.dismiss()
@@ -302,5 +330,19 @@ class Frag2 : Fragment() {
                 requireActivity().finish()
             }
         })
+    }
+    private fun adjustDropDownPosition(autoCompleteTextView: AutoCompleteTextView) {
+        val location = IntArray(2)
+        autoCompleteTextView.getLocationOnScreen(location)
+
+        val screenHeight = resources.displayMetrics.heightPixels
+        val dropDownHeight = autoCompleteTextView.dropDownHeight
+
+        val spaceBelow = screenHeight - location[1] - autoCompleteTextView.height
+        val spaceAbove = location[1]
+
+        if (spaceAbove > dropDownHeight) {
+            autoCompleteTextView.dropDownVerticalOffset = -autoCompleteTextView.height - dropDownHeight - 30
+        }
     }
 }

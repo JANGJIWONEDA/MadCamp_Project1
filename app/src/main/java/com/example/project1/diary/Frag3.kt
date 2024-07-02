@@ -59,7 +59,6 @@ class Frag3 : Fragment() {
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.setHasFixedSize(true)
 
-//        val rootView = inflater.inflate(R.layout.fragment_frag3, container, false)
         diaryRepository = DiaryRepository(DiaryDatabase(requireContext()))
         
         addDiary = rootView.findViewById(R.id.add_diaries)
@@ -76,26 +75,6 @@ class Frag3 : Fragment() {
         val dh = DiaryHandler(context)
         diaryList = dh.getDiariesList()
         setupHomeRecyclerView()
-        val ch = ContactHandler(context)
-//        val diaryAdapter = DiaryAdapter()
-//        diaryAdapter.setOnItemClickListener(object:
-//            DiaryAdapter.OnItemClickListener {
-//            override fun onCardViewClick(view: View, diaries: Diaries, pos: Int) {
-//                val intent = Intent(activity, DiaryProfile::class.java)
-//                val name = view.findViewById<TextView>(R.id.diaryName).text.toString()
-//                val tar = diaryList.find { it.diaryName == name }!!
-//                val id = diaries.id.toString()
-//                intent.putStringArrayListExtra("diaryprofile", arrayListOf(name, tag, id))
-//                activity?.supportFragmentManager
-//                    ?.beginTransaction()
-//                    ?.remove(diariesFragment)
-//                    ?.commit()
-//                startActivity(intent)
-//
-//            }
-//        }
-//        )
-
 
 
 
