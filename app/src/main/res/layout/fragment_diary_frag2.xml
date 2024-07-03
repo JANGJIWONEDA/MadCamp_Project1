@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="113dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/font1"
         android:gravity="center"
         android:textSize="20dp"
@@ -22,14 +22,31 @@
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="460dp"
         android:layout_below="@id/select_image_button"
         android:layout_marginTop="16dp"
         android:columnWidth="100dp"
         android:gravity="center"
-        android:numColumns="4"
+        android:scaleType="centerCrop"
+        android:numColumns="1"
         android:stretchMode="columnWidth"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="165dp" />
+        tools:layout_editor_absoluteY="165dp"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:layout_margin="10dp"/>
+
+    <android.widget.Button
+        android:id="@+id/latice_button"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@id/latice_button"
+        android:background="@drawable/list_selector"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/font1"
+        android:checked="false"
+        />
 
 </RelativeLayout>

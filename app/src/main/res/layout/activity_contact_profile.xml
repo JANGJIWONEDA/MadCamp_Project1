@@ -254,32 +254,28 @@
         android:id="@+id/end_point"
         android:layout_width="150dp"
         android:layout_height="40dp"
+        android:layout_marginRight="5dp"
         android:background="@drawable/contact_button"
         android:fontFamily="@font/font1"
-        android:layout_marginRight="85dp"
         android:text="연락처 삭제"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintEnd_toStartOf="@id/edit_point"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add_contact_tag3"
-        app:layout_constraintVertical_bias="0.315"></android.widget.Button>
+        app:layout_constraintVertical_bias="0.315" />
 
     <android.widget.Button
         android:id="@+id/edit_point"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginRight="200dp"
         android:layout_marginLeft="5dp"
         android:background="@drawable/contact_button"
         android:text="연락처 편집"
         android:textSize="15dp"
         android:fontFamily="@font/font1"
         app:layout_constraintBottom_toBottomOf="@id/end_point"
-        app:layout_constraintStart_toEndOf="@id/end_point">
-
-    </android.widget.Button>
-
+        app:layout_constraintStart_toEndOf="@id/end_point"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

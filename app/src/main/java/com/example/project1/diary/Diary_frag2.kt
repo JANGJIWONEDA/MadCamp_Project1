@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +24,10 @@ class Diary_frag2 : Fragment() {
     private lateinit var myGridAdapter: MyGridAdapter
 
     private val imageDataList = ArrayList<ImageData>()
+
+    private var isGridViewLatice = false // 그리드뷰 상태를 저장하는 변수 추가
+
+    private var isChecked = false // 버튼의 상태를 나타내는 변수
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +46,27 @@ class Diary_frag2 : Fragment() {
         // Fragment가 생성될 때 이미지 데이터를 로드
         loadSavedImageData()
 
+        val laticeButton = view.findViewById<Button>(R.id.latice_button)
+        laticeButton.setOnClickListener {
+            isChecked = !isChecked // 상태 토글
+            laticeButton.setBackgroundResource(if (isChecked) R.drawable.list else R.drawable.latice)
+            toggleGridViewLatice()
+        }
+
         return view
+    }
+
+    private fun toggleGridViewLatice() {
+        if (isGridViewLatice) {
+            // 원래 상태로 변경
+            gridView.numColumns = 1
+            myGridAdapter.setImageSize(650, 650)
+        } else {
+            // Latice 상태로 변경
+            gridView.numColumns = 4
+            myGridAdapter.setImageSize(250, 250)
+        }
+        isGridViewLatice = !isGridViewLatice // 상태를 토글
     }
 
     // JSON 파일에서 이미지 데이터를 로드
@@ -84,6 +109,9 @@ class Diary_frag2 : Fragment() {
     }
 
     inner class MyGridAdapter(private val context: android.content.Context) : BaseAdapter() {
+        private var imageWidth = 650
+        private var imageHeight = 650
+
         private val imageDataList = ArrayList<ImageData>()
 
         override fun getCount(): Int {
@@ -98,9 +126,15 @@ class Diary_frag2 : Fragment() {
             return position.toLong()
         }
 
+        fun setImageSize(width: Int, height: Int) {
+            imageWidth = width
+            imageHeight = height
+            notifyDataSetChanged()
+        }
+
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val imageView = convertView as? ImageView ?: ImageView(context).apply {
-                layoutParams = ViewGroup.LayoutParams(250, 250)
+                layoutParams = ViewGroup.LayoutParams(imageWidth, imageHeight)
                 scaleType = ImageView.ScaleType.CENTER_CROP
                 setPadding(0, 0, 0, 0)
             }

@@ -69,9 +69,6 @@ class Frag3 : Fragment() {
 
         diariesFragment = this
 
-        recyclerView = binding.recyclerViewDiary
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         val dh = DiaryHandler(context)
         diaryList = dh.getDiariesList()
         setupHomeRecyclerView()

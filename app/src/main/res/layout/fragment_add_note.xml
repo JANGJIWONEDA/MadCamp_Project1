@@ -59,7 +59,7 @@
             android:onClick="onClickEditDiaryButton"
             android:text="메모 저장"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/contact_button"
             android:fontFamily="@font/font1"
             android:textSize="15dp">

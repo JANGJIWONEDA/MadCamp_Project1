@@ -51,6 +51,10 @@ class Frag2 : Fragment() {
     private val imageDataList = ArrayList<ImageData>()
     private var filteredImageDataList = ArrayList<ImageData>()
 
+    private var isGridViewLatice = false // 그리드뷰 상태를 저장하는 변수 추가
+
+    private var isChecked = false // 버튼의 상태를 나타내는 변수
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -94,7 +98,28 @@ class Frag2 : Fragment() {
             openGallery()
         }
 
+        // Latice 버튼 설정
+        val laticeButton = view.findViewById<Button>(R.id.latice_button)
+        laticeButton.setOnClickListener {
+            isChecked = !isChecked // 상태 토글
+            laticeButton.setBackgroundResource(if (isChecked) R.drawable.list else R.drawable.latice)
+            toggleGridViewLatice()
+        }
+
         return view
+    }
+
+    private fun toggleGridViewLatice() {
+        if (isGridViewLatice) {
+            // 원래 상태로 변경
+            gridView.numColumns = 1
+            myGridAdapter.setImageSize(650, 650)
+        } else {
+            // Latice 상태로 변경
+            gridView.numColumns = 4
+            myGridAdapter.setImageSize(250, 250)
+        }
+        isGridViewLatice = !isGridViewLatice // 상태를 토글
     }
 
     private fun openGallery() {
@@ -134,6 +159,8 @@ class Frag2 : Fragment() {
 
     inner class MyGridAdapter(private val context: Context) : BaseAdapter() {
         var imageDataList = ArrayList<ImageData>()
+        private var imageWidth = 650
+        private var imageHeight = 650
 
         fun setImageDataList(imageDataList: List<ImageData>) {
             this.imageDataList = ArrayList(imageDataList)
@@ -154,7 +181,7 @@ class Frag2 : Fragment() {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val imageView = convertView as? ImageView ?: ImageView(context).apply {
-                layoutParams = ViewGroup.LayoutParams(250, 250)
+                layoutParams = ViewGroup.LayoutParams(imageWidth, imageHeight)
                 scaleType = ImageView.ScaleType.CENTER_CROP
                 setPadding(0, 0, 0, 0)
             }
@@ -167,6 +194,12 @@ class Frag2 : Fragment() {
             }
 
             return imageView
+        }
+
+        fun setImageSize(width: Int, height: Int) {
+            imageWidth = width
+            imageHeight = height
+            notifyDataSetChanged()
         }
 
         fun addImage(uri: Uri) {
@@ -196,9 +229,11 @@ class Frag2 : Fragment() {
                 }
             })
 
+            val customFont: Typeface? = ResourcesCompat.getFont(context, R.font.font1)
+
             val alertDialog = AlertDialog.Builder(context)
                 .setView(dialogView)
-                .setPositiveButton("Select") { dialog, _ ->
+                .setPositiveButton("선택하기") { dialog, _ ->
                     val description = editTextDescription.text.toString()
                     val tag = autoCompleteImageTag.text.toString()
                     imageDataList.add(ImageData(uri, description, tag))
@@ -208,10 +243,23 @@ class Frag2 : Fragment() {
                     // 이미지 데이터가 추가될 때마다 JSON 파일에 저장
                     writeImageDataToJsonFile()
                 }
-                .setNegativeButton("Cancel") { dialog, _ ->
+                .setNegativeButton("취소하기") { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()
+
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton?.let {
+                it.typeface = customFont // 긍정적인(Positive) 버튼에 글꼴 설정 적용
+                it.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            }
+
+            // 다이얼로그의 부정적인(Negative) 버튼 찾기
+            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            negativeButton?.let {
+                it.typeface = customFont // 부정적인(Negative) 버튼에 글꼴 설정 적용
+                it.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            }
         }
 
         private fun showImageDialog(imageData: ImageData) {
@@ -224,17 +272,31 @@ class Frag2 : Fragment() {
             textViewDescription.text = "가고 싶은 곳: ${imageData.description}"  // 텍스트 설정
             textViewTag.text = "여행지: ${imageData.tag}" // 텍스트 설정
 
+            val customFont: Typeface? = ResourcesCompat.getFont(context, R.font.font1)
+
             val alertDialog = AlertDialog.Builder(context)
                 .setView(dialogView)
-                .setPositiveButton("Close") { dialog, _ ->
+                .setPositiveButton("닫기") { dialog, _ ->
                     dialog.dismiss()
                 }
-                .setNegativeButton("Delete") { dialog, _ ->
+                .setNegativeButton("지우기") { dialog, _ ->
                     // 이미지 삭제 처리
                     deleteImage(imageData)
                     dialog.dismiss()
                 }
                 .show()
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton?.let {
+                it.typeface = customFont // 긍정적인(Positive) 버튼에 글꼴 설정 적용
+                it.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            }
+
+            // 다이얼로그의 부정적인(Negative) 버튼 찾기
+            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            negativeButton?.let {
+                it.typeface = customFont // 부정적인(Negative) 버튼에 글꼴 설정 적용
+                it.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            }
         }
 
         private fun deleteImage(imageData: ImageData) {

@@ -66,16 +66,16 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         binding.addNoteFab.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
         }
-        binding.memoSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                searchNote(newText)
-                return true
-            }
-        })
+//        binding.memoSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                searchNote(newText)
+//                return true
+//            }
+//        })
     }
     
     private fun updateUI(note: List<Note>?){
