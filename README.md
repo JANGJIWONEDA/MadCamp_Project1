@@ -2,9 +2,9 @@
 
 여행 기록지는 여행을 기록할 수 있는 어플 입니다.
 
-## Team Member
+## Info
 
-KAIST 19' 김동근 , DGIST 22' 장지원
+Team: KAIST 19' 김동근 , DGIST 22' 장지원
 
 ## Language / IDE
 
