@@ -84,7 +84,7 @@ Tab2의 갤러리는 `gridView` 로 이루어져 있습니다.
 ### Tab 3
 : 여행의 기록, Tab 3 구현 설명
 <div style="display: flex; flex-wrap: nowrap; justify-content: center;">
-    <img src="https://github.com/JANGJIWONEDA/MadCamp_Project1/assets/133734191/af395c11-66e3-4047-990c-453c1b96f532" alt="Screen_Recording_20240703_140403-ezgif com-video-to-gif-converter" width="180" style="margin-right: 30px;">
+![Screen_Recording_20240703_194146 1](https://github.com/JANGJIWONEDA/MadCamp_Project1/assets/85298954/fa5b7077-eafb-4130-9231-688ad27c3a8d)
 </div>
 
 Tab3의 '여행의 기록'은 `viewPager`로 이루어져 있습니다. 다음은 각 Fragment에 관한 설명입니다.
