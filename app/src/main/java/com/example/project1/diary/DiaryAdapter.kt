@@ -8,9 +8,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project1.Memo.adapter.NoteAdapter.NoteViewHolder
 import com.example.project1.R
-import com.example.project1.databinding.NoteLayoutBinding
 
 class DiaryAdapter (): RecyclerView.Adapter<DiaryAdapter.Holder>() {
 

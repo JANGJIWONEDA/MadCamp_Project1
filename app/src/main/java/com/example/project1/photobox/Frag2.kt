@@ -29,7 +29,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.project1.R
-import com.example.project1.MainActivity
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -63,8 +62,6 @@ class Frag2 : Fragment() {
 
         val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.animation3)
         view.startAnimation(animation)
-
-
 
         gridView = view.findViewById<GridView>(R.id.gridView)
         myGridAdapter = MyGridAdapter(requireContext())

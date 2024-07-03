@@ -23,17 +23,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.InvalidationTracker
 import com.example.project1.MainActivity
 import com.example.project1.MainMenu
 import com.example.project1.R
 import com.example.project1.databinding.ActivityMainBinding
-import com.example.project1.diary.database.DiaryDatabase
-import com.example.project1.diary.repository.DiaryRepository
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.input.ObservableInputStream
 import com.google.gson.Gson
 
 class Frag1 : Fragment() {

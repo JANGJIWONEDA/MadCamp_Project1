@@ -8,27 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
-import androidx.lifecycle.switchMap
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.project1.MainActivity
 import com.example.project1.MainMenu
-import com.example.project1.Memo.adapter.NoteAdapter
-import com.example.project1.Memo.model.Note
 import com.example.project1.R
-import com.example.project1.contact.ContactHandler
-import com.example.project1.databinding.ActivityMainBinding
 import com.example.project1.databinding.FragmentFrag3Binding
-import com.example.project1.databinding.FragmentHomeBinding
 import com.example.project1.diary.database.DiaryDatabase
 import com.example.project1.diary.repository.DiaryRepository
 
@@ -39,7 +25,7 @@ class Frag3 : Fragment() {
     lateinit var diariesFragment: Frag3
     lateinit var diaryRepository : DiaryRepository
     lateinit var diaryAdapter: DiaryAdapter
-    lateinit var requestLauncher: ActivityResultLauncher<Intent>
+//    lateinit var requestLauncher: ActivityResultLauncher<Intent>
 //    lateinit var binding: ActivityMainBinding
     private var homeBinding: FragmentFrag3Binding? = null
     private val binding get() = homeBinding!!
@@ -78,10 +64,10 @@ class Frag3 : Fragment() {
         return rootView
     }
 
-    fun onClickAddDiaryButton(view: View?) {
-        val intent = Intent(activity, DiaryAdder::class.java)
-        startActivity(intent)
-    }
+//    fun onClickAddDiaryButton(view: View?) {
+//        val intent = Intent(activity, DiaryAdder::class.java)
+//        startActivity(intent)
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

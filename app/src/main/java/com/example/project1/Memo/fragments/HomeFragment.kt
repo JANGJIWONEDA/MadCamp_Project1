@@ -14,12 +14,10 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.project1.Memo.MemoTest
 import com.example.project1.Memo.adapter.NoteAdapter
 import com.example.project1.Memo.model.Note
 import com.example.project1.Memo.viewmodel.NoteViewModel

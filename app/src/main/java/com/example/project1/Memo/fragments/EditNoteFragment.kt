@@ -15,13 +15,11 @@ import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.project1.Memo.MemoTest
 import com.example.project1.Memo.model.Note
 import com.example.project1.Memo.viewmodel.NoteViewModel
 import com.example.project1.R
 import com.example.project1.databinding.FragmentEditNoteBinding
 import com.example.project1.diary.DiaryProfile
-import com.example.project1.diary.Diary_frag3
 
 /**
  * A simple [Fragment] subclass.

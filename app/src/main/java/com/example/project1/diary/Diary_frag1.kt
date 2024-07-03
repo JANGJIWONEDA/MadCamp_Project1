@@ -1,6 +1,5 @@
 package com.example.project1.diary
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -12,26 +11,20 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project1.MainActivity
 import com.example.project1.R
 import com.example.project1.contact.ContactAdapter
-import com.example.project1.contact.ContactEditer
 import com.example.project1.contact.ContactHandler
-import com.example.project1.contact.ContactProfile
 import com.example.project1.contact.Contacts
 import com.example.project1.diary.database.DiaryDatabase
 import com.example.project1.diary.repository.DiaryRepository
-import com.google.gson.Gson
 import kotlinx.coroutines.launch
-import com.example.project1.Memo.fragments.EditNoteFragment
 
 class Diary_frag1 : Fragment() {
 

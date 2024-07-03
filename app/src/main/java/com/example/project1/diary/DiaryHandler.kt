@@ -1,7 +1,6 @@
 package com.example.project1.diary
 
 import android.content.Context
-import android.util.Log
 import org.json.JSONArray
 import org.json.JSONTokener
 import java.io.File
@@ -27,11 +26,11 @@ class DiaryHandler(val context: Context?) {
         }
         return diaryList
     }
-    fun writeDiaryList(newData: String) {
-        val diaryJsonFile = File(context!!.filesDir, "diaries.json")
-        if(!diaryJsonFile.exists()){
-            context.openFileOutput("diaries.json", Context.MODE_PRIVATE)
-        }
-        diaryJsonFile.writeText(newData)
-    }
+//    fun writeDiaryList(newData: String) {
+//        val diaryJsonFile = File(context!!.filesDir, "diaries.json")
+//        if(!diaryJsonFile.exists()){
+//            context.openFileOutput("diaries.json", Context.MODE_PRIVATE)
+//        }
+//        diaryJsonFile.writeText(newData)
+//    }
 }

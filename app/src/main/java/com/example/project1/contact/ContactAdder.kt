@@ -8,13 +8,10 @@ import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.Observer
-import androidx.lifecycle.map
 import com.example.project1.MainActivity
 import com.example.project1.R
 import com.google.gson.Gson
-import com.example.project1.diary.DiaryHandler
 import com.example.project1.diary.database.DiaryDatabase
 import com.example.project1.diary.repository.DiaryRepository
 

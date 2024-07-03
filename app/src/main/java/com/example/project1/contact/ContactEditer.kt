@@ -8,17 +8,11 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import com.example.project1.MainActivity
 import com.example.project1.R
-import com.example.project1.diary.DiaryHandler
 import com.example.project1.diary.database.DiaryDatabase
 import com.example.project1.diary.repository.DiaryRepository
 import com.google.gson.Gson
@@ -155,14 +149,14 @@ class ContactEditer : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun addOnBackPressedCallback() {
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                val intent = Intent(this@ContactEditer, ContactProfile::class.java)
-                startActivity(intent)
-            }
-        }
-        this.onBackPressedDispatcher.addCallback(this, callback)
-    }
+//    private fun addOnBackPressedCallback() {
+//        val callback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                val intent = Intent(this@ContactEditer, ContactProfile::class.java)
+//                startActivity(intent)
+//            }
+//        }
+//        this.onBackPressedDispatcher.addCallback(this, callback)
+//    }
 
 }

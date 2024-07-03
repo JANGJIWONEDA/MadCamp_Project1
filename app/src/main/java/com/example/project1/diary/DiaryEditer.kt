@@ -6,23 +6,15 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import com.example.project1.MainActivity
-import com.example.project1.Memo.model.Note
 import com.example.project1.R
 import com.example.project1.diary.database.DiaryDatabase
 import com.example.project1.diary.repository.DiaryRepository
-import com.google.gson.Gson
 import kotlinx.coroutines.launch
-import kotlin.properties.Delegates
 
 class DiaryEditer : AppCompatActivity() {
     private lateinit var profileName: EditText
@@ -54,7 +46,6 @@ class DiaryEditer : AppCompatActivity() {
     }
 
     fun onClickEditDiaryButton(view: View) {
-        val dh = DiaryHandler(applicationContext)
 //        val diaryList = dh.getDiariesList()
 
         var newDiaryName = profileName.text.toString()
@@ -89,13 +80,13 @@ class DiaryEditer : AppCompatActivity() {
         finish()
     }
 
-    private fun addOnBackPressedCallback() {
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                val intent = Intent(this@DiaryEditer, MainActivity::class.java)
-                startActivity(intent)
-            }
-        }
-        this.onBackPressedDispatcher.addCallback(this, callback)
-    }
+//    private fun addOnBackPressedCallback() {
+//        val callback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                val intent = Intent(this@DiaryEditer, MainActivity::class.java)
+//                startActivity(intent)
+//            }
+//        }
+//        this.onBackPressedDispatcher.addCallback(this, callback)
+//    }
 }

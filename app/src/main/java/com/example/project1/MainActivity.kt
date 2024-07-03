@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.map
 import com.example.project1.contact.Frag1
 import com.example.project1.databinding.ActivityMainBinding
 import com.example.project1.diary.Frag3

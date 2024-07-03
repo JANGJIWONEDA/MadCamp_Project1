@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.project1.MainActivity
 import com.example.project1.Memo.databse.NoteDatabase
-import com.example.project1.Memo.fragments.HomeFragment
 import com.example.project1.Memo.repository.NoteRepository
 import com.example.project1.Memo.viewmodel.NoteViewModel
 import com.example.project1.Memo.viewmodel.NoteViewModelFactory
