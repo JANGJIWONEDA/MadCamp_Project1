@@ -26,7 +26,7 @@ IDE: Android Studio
 </div>  
 
 ### Index
-- [탭 1](#section-1)
+- [탭 1](#Tab-1)
 - [탭 2](#section-2)
   - [서브섹션 2.1](#subsection-21)
   - [서브섹션 2.2](#subsection-22)
