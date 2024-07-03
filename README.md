@@ -48,6 +48,9 @@ IDE: Android Studio
 - [Tab 2](#Tab-2)
 - [Tab 3](#Tab-3)
 - [어플리케이션의 구조](#Tab-4)
+  - [인연 저장소](#Contacts_structure)
+  - [추억 저장소](#Image-structure)
+  - [여행의 기록](#Diary-structure)
 
 ### Tab 1
 : 인연 저장소, Tab 1 구현 설명
@@ -84,7 +87,7 @@ Tab2의 갤러리는 `gridView` 로 이루어져 있습니다.
     <img src="https://github.com/JANGJIWONEDA/MadCamp_Project1/assets/133734191/af395c11-66e3-4047-990c-453c1b96f532" alt="Screen_Recording_20240703_140403-ezgif com-video-to-gif-converter" width="180" style="margin-right: 30px;">
 </div>
 
-Tab3의 '여행 기록'은 `viewPager`로 이루어져 있습니다. 다음은 각 Fragment에 관한 설명입니다.
+Tab3의 '여행의 기록'은 `viewPager`로 이루어져 있습니다. 다음은 각 Fragment에 관한 설명입니다.
 
   
 Fragment1: Fragment 1에서는 `recyclerView`를 사용합니다. Tab1에 저장되어 있는 연락처 중 '여행 기록'의 이름과 일치하는 것들 찾아서 `recyclerView`에 보여줍니다. 
@@ -99,4 +102,24 @@ Fragment2: Fragment 3에서는 `recyclerView`를 사용합니다. Tab3에서 입
 
 
 ### Tab 4
-  : 어플리케이션의 구
+  : 어플리케이션의 구조
+  ![스크린샷 2024-07-03 182551](https://github.com/JANGJIWONEDA/MadCamp_Project1/assets/85298954/fa849e11-6906-46ee-adbc-2a8f3a3d5a9f)
+저희 앱의 전체적인 탭과 데이터 사이의 관계도는 이렇습니다
+
+### Contacts structure
+"인연 저장소" 탭
+![스크린샷 2024-07-03 182643](https://github.com/JANGJIWONEDA/MadCamp_Project1/assets/85298954/66c28eb8-2173-4253-9cf1-e08abc493af9)
+인연 저장소 탭에서는 Contacts.json 파일에서 저장된 이름, 연락처, 관계, 함께가는 여행지등을 불러오고, 또 저장할 수 있습니다.
+이 때 diary 데이터에서 여행의 기록에서 등록한 여행지들을 불러와 자동완성 기능을 제공합니다. 여행의 기록에서는 여행지를 통해 연관 연락처들을 가져오기 때문에
+오타로 인한 연동 실패를 막을 수 있습니다.
+
+### Image structure
+"추억 저장소" 탭
+![스크린샷 2024-07-03 182704](https://github.com/JANGJIWONEDA/MadCamp_Project1/assets/85298954/6397d1bd-e975-4d08-a492-3f4a54f3dae3)
+추억 저장소 탭은 인연저장소와 거의 비슷합니다. Images.json 파일에서 저장된 이름과 설명등을 가져오고, 또 저장할 수 있습니다.
+사진 역시 diary 데이터에서 가져온 여행지 목록을 이용해 자동완성기능을 제공하며, 이를 통해 여행의 기록 탭에서 관련 사진들을 확인 할 수 있습니다.
+
+### Diary-structure
+"여행의 기록" 탭
+![스크린샷 2024-07-03 182726](https://github.com/JANGJIWONEDA/MadCamp_Project1/assets/85298954/a024160f-ab2c-4d58-a2ce-db11a4bc39a5)
+여행의 기록 탭에는 해당 여행지의 이름과 태그를 저장할 수 있습니다. 이를 통해 Contacts.json과 Images.json 파일에 저장돼 있는 데이터 중 같은 여행지 태그를 가지고 있는 연락처와 사진만을 모아서 보여줍니다. 또한, 해당 탭에서는 메모를 불러오고 저장할 수 있는데, 기록에 부여된 고유한 id를 통해 해당 기록에서 쓰여진 메모만을 판별하고 보여줍니다. 이 id는 diary가 삭제될 때 까지 바꿀 수 없습니다. 따라서, 어떤 기록에서 쓰여진 메모들은 해당 기록에서만 확인할 수 있습니다. 
