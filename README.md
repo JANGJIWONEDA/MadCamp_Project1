@@ -1,6 +1,6 @@
 # "여행 기록지"
 
-여행 기록지는 여행을 기록할 수 있는 어플 입니다.
+여행 기록지는 여행을 보조하거나 기록할 수 있는 어플 입니다. 여행 기록지와 함께 잊지 못할 여행을 떠나보세요!!
 
 ## Info
 
@@ -48,7 +48,7 @@ IDE: Android Studio
 - [Tab 2](#Tab-2)
 - [Tab 3](#Tab-3)
 - [어플리케이션의 구조](#Tab-4)
-  - [인연 저장소](#Contacts_structure)
+  - [인연 저장소](#Contacts-structure)
   - [추억 저장소](#Image-structure)
   - [여행의 기록](#Diary-structure)
 
