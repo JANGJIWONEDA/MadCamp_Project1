@@ -73,10 +73,6 @@ class Frag3 : Fragment() {
         diaryList = dh.getDiariesList()
         setupHomeRecyclerView()
 
-
-
-        recyclerView = rootView.findViewById(R.id.recyclerView_Diary) as RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = diaryAdapter
         diaryAdapter.notifyDataSetChanged()
         return rootView
