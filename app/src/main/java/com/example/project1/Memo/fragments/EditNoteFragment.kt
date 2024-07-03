@@ -26,7 +26,7 @@ import com.example.project1.diary.DiaryProfile
  * Use the [EditNoteFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
+class EditNoteFragment : Fragment(R.layout.fragment_edit_note){
 
     private var editNoteBinding: FragmentEditNoteBinding?= null
     private val binding get() = editNoteBinding!!
@@ -48,10 +48,6 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
-
 
         tag = (activity as DiaryProfile).diary_id
         notesViewModel = (activity as DiaryProfile).noteViewModel
@@ -90,20 +86,7 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
         }.create().show()
     }
 
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menu.clear()
-        menuInflater.inflate(R.menu.menu_edit_note, menu)
-    }
-
-    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return when(menuItem.itemId){
-            R.id.deleteMenu -> {
-                deleteNote()
-                true
-            } else -> false
-        }
-    }
-        override fun onDestroy(){
+    override fun onDestroy(){
             super.onDestroy()
             editNoteBinding = null
     }

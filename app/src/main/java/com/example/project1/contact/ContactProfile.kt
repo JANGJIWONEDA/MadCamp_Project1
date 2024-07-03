@@ -79,11 +79,7 @@ class ContactProfile : AppCompatActivity() {
         startActivity(intent)
     }
     private fun onClickEditContactButton(view: View){
-//        val contactsFragment = this
         val intent = Intent(this@ContactProfile, ContactEditer::class.java)
-//        val name = findViewById<TextView>(R.id.detailName2).text.toString()
-//        val phone = findViewById<TextView>(R.id.detailPhone).text.toString()
-//        val relation = findViewById<TextView>(R.id.detailRelation).text.toString()
         intent.putStringArrayListExtra("contactedit", arrayListOf(
             profileName2.text.toString(),
             profilePhone.text.toString(),

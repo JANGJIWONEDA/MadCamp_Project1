@@ -32,7 +32,7 @@ import androidx.lifecycle.switchMap
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener, MenuProvider {
+class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
     // TODO: Rename and change types of parameters
     private var homeBinding: FragmentHomeBinding? = null
     private val binding get() = homeBinding!!
@@ -52,9 +52,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         tag = (activity as DiaryProfile).diary_id
 
@@ -93,10 +90,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     private fun updateUI(note: List<Note>?){
         if (note != null){
             if(note.isNotEmpty()){
-                binding.emptyNotesImage.visibility = View.GONE
                 binding.homeRecyclerView.visibility = View.VISIBLE
             } else{
-                binding.emptyNotesImage.visibility = View.VISIBLE
                 binding.homeRecyclerView.visibility = View.GONE
             }
         }
@@ -170,18 +165,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         homeBinding = null
     }
 
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menu.clear()
-        menuInflater.inflate(R.menu.home_menu, menu)
-
-        val menuSearch = menu.findItem(R.id.searchMenu).actionView as SearchView
-        menuSearch.isSubmitButtonEnabled = false
-        menuSearch.setOnQueryTextListener(this)
-    }
-
-    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return false
-    }
     fun setViewModel(viewModel: NoteViewModel) {
         notesViewModel = viewModel
     }

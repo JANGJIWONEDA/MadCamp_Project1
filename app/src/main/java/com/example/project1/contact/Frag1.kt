@@ -41,8 +41,6 @@ class Frag1 : Fragment() {
     lateinit var requestLauncher: ActivityResultLauncher<Intent>
     lateinit var binding: ActivityMainBinding
     lateinit var contactAdapter: ContactAdapter
-//    lateinit var diaryTagList: List<String>
-//    private lateinit var diaryRepository: DiaryRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

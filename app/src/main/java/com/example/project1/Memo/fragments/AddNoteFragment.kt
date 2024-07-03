@@ -24,7 +24,7 @@ import com.example.project1.diary.DiaryProfile
  * Use the [AddNoteFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
+class AddNoteFragment : Fragment(R.layout.fragment_add_note){
 
     private var addNoteBinding: FragmentAddNoteBinding? = null
     private val binding get() = addNoteBinding!!
@@ -44,9 +44,6 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
-
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         notesViewModel = (activity as DiaryProfile).noteViewModel
         addNoteView = view
@@ -72,23 +69,9 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
         }
     }
 
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menu.clear()
-        menuInflater.inflate(R.menu.menu_add_note, menu)
-    }
-
-    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return when (menuItem.itemId) {
-            R.id.saveMenu -> {
-                saveNote(addNoteView)
-                true
-            }
-
-            else -> false
-        }
-        }
     override fun onDestroy(){
         super.onDestroy()
         addNoteBinding = null
     }
+
 }

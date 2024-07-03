@@ -34,14 +34,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />
-
-        <activity
-            android:name=".Memo.MemoTest"
-            android:exported="false">
         <meta-data
             android:name="android.app.lib_name"
             android:value="" />
-            </activity>
         <activity
             android:name=".diary.DiaryProfile"
             android:exported="false" />
@@ -83,9 +78,6 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
 
     </application>
 

@@ -16,7 +16,6 @@ import com.example.project1.diary.database.DiaryDatabase
 import com.example.project1.diary.repository.DiaryRepository
 
 class ContactAdder : AppCompatActivity() {
-    private lateinit var searchList: List<String>
     private lateinit var autoCompleteTextView1: AutoCompleteTextView
     private lateinit var autoCompleteTextView2: AutoCompleteTextView
     private lateinit var autoCompleteTextView3: AutoCompleteTextView

@@ -20,13 +20,10 @@ import com.example.project1.diary.repository.DiaryRepository
 
 class Frag3 : Fragment() {
     lateinit var recyclerView: RecyclerView
-    private var diaryList = arrayListOf<Diaries>()
     private var addDiary: Button? = null
     lateinit var diariesFragment: Frag3
     lateinit var diaryRepository : DiaryRepository
     lateinit var diaryAdapter: DiaryAdapter
-//    lateinit var requestLauncher: ActivityResultLauncher<Intent>
-//    lateinit var binding: ActivityMainBinding
     private var homeBinding: FragmentFrag3Binding? = null
     private val binding get() = homeBinding!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -55,19 +52,12 @@ class Frag3 : Fragment() {
 
         diariesFragment = this
 
-//        val dh = DiaryHandler(context)
-//        diaryList = dh.getDiariesList()
         setupHomeRecyclerView()
 
         recyclerView.adapter = diaryAdapter
         diaryAdapter.notifyDataSetChanged()
         return rootView
     }
-
-//    fun onClickAddDiaryButton(view: View?) {
-//        val intent = Intent(activity, DiaryAdder::class.java)
-//        startActivity(intent)
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
