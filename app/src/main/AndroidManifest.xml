@@ -59,10 +59,13 @@
             android:exported="false" />
         <activity
             android:name=".contact.ContactAdder"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" /> <!-- android:label="@string/title_activity_contact_adder" -->
+
         <activity
             android:name=".contact.ContactAdapter"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Project1" />
         <activity
             android:name=".MainActivity"

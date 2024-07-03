@@ -16,6 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.project1.Memo.MemoTest
@@ -66,18 +67,31 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         binding.addNoteFab.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
         }
-//        binding.memoSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                searchNote(newText)
-//                return true
-//            }
-//        })
+        binding.memoSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrBlank()) {
+                    val allNotesLiveData = notesViewModel.getAllNotes()
+                    allNotesLiveData.observe(viewLifecycleOwner) { allNotes ->
+                        val filteredNotes = allNotes.filter { note ->
+                            note.noteTag == tag
+                        }
+                        noteAdapter.differ.submitList(filteredNotes)
+                        updateUI(filteredNotes)
+                    }
+                }
+                else{
+                    Log.d("test in HOMEFRA`GMENT", "${newText}")
+                    searchNote(newText)
+                }
+                return true
+            }
+        })
     }
-    
+
     private fun updateUI(note: List<Note>?){
         if (note != null){
             if(note.isNotEmpty()){
@@ -123,17 +137,32 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
     }
     private fun searchNote(query: String?){
-        val searchQuery = " %$query"
+        val searchQuery = "%$query%" ?: ""
         Log.d("Test searchNote", "${searchQuery}")
-        notesViewModel.searchNote(searchQuery).observe(this) {list ->
-            noteAdapter.differ.submitList(list)}
+        notesViewModel.searchNote(searchQuery).observe(this, Observer { searchResults ->
+            val filteredResultsLiveData = MutableLiveData<List<Note>>()
+            filteredResultsLiveData.value = searchResults.filter { note ->
+                note.noteTag == tag
+            }
+//            noteAdapter.differ.submitList(filteredResultsLiveData)})
+            filteredResultsLiveData.observe(viewLifecycleOwner, Observer { filteredResults ->
+                noteAdapter.differ.submitList(filteredResults)
+                updateUI(filteredResults)
+            })
+        })
     }
+
     override fun onQueryTextSubmit(p0: String?): Boolean {
         return false
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        if(newText != null){
+        if (newText.isNullOrBlank()) {
+            binding.memoSearchView.visibility = View.GONE
+        }
+        else{
+            Log.d("test in HOMEFRA`GMENT", "${newText}")
+            binding.memoSearchView.visibility = View.VISIBLE
             searchNote(newText)
         }
         return true

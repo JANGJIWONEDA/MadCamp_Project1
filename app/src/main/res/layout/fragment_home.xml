@@ -7,22 +7,40 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="706dp"
         android:layout_marginTop="0dp"
-        tools:context=".Memo.fragments.HomeFragment"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        tools:context=".Memo.fragments.HomeFragment">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/memoSearchView"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/search_view"
+            android:focusable="true"
+            android:fontFamily="@font/font1"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="보고 싶은 추억 검색" />
 
         <android.widget.Button
             android:id="@+id/addNoteFab"
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="60dp"
             android:background="@drawable/contact_button"
             android:clickable="true"
             android:contentDescription="image"
+            android:fontFamily="@font/font1"
             android:text="메모 추가하기"
             android:textSize="15sp"
-            android:fontFamily="@font/font1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -30,19 +48,19 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/memoSearchView" />
 
         <ImageView
+            android:id="@+id/emptyNotesImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/emptyNotesImage"
-            android:visibility="gone"
-            android:src="@drawable/baseline_clear_24"/>
+            android:src="@drawable/baseline_clear_24"
+            android:visibility="gone" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

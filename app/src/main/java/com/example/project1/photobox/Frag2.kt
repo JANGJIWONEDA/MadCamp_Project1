@@ -186,6 +186,8 @@ class Frag2 : Fragment() {
                 setPadding(0, 0, 0, 0)
             }
 
+            imageView.layoutParams = ViewGroup.LayoutParams(imageWidth, imageHeight)
+
             val imageData = getItem(position) as ImageData
             imageView.setImageURI(imageData.imageUri)
 

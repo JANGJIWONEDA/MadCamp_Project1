@@ -69,8 +69,8 @@ class Frag3 : Fragment() {
 
         diariesFragment = this
 
-        val dh = DiaryHandler(context)
-        diaryList = dh.getDiariesList()
+//        val dh = DiaryHandler(context)
+//        diaryList = dh.getDiariesList()
         setupHomeRecyclerView()
 
         recyclerView.adapter = diaryAdapter
