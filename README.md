@@ -33,7 +33,7 @@ IDE: Android Studio
 - [탭 3](#section-3)
 - [어플리케이션의 구조](#section-3)
 
-### 1.Tab 1
+### Tab 1
 : 인연 저장소  
 
 ### 2.Tab 2
