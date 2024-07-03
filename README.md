@@ -26,11 +26,12 @@ IDE: Android Studio
 </div>  
 
 ### Index
-- [섹션 1](#section-1)
-- [섹션 2](#section-2)
+- [탭 1](#section-1)
+- [탭 2](#section-2)
   - [서브섹션 2.1](#subsection-21)
   - [서브섹션 2.2](#subsection-22)
-- [섹션 3](#section-3)
+- [탭 3](#section-3)
+- [어플리케이션의 구조](#section-3)
 
 ### 1.Tab 1
 : 인연 저장소  
