@@ -104,7 +104,7 @@ Fragment2: Fragment 3에서는 `recyclerView`를 사용합니다. Tab3에서 입
 ### Tab 4
   : 어플리케이션의 구조
   ![스크린샷 2024-07-03 182551](https://github.com/JANGJIWONEDA/MadCamp_Project1/assets/85298954/fa849e11-6906-46ee-adbc-2a8f3a3d5a9f)
-저희 앱의 전체적인 탭과 데이터 사이의 관계도는 이렇습니다
+저희 앱의 전체적인 탭과 데이터 사이의 관계도는 위와 같같습니다
 
 #### Contacts structure
 "인연 저장소" 탭
